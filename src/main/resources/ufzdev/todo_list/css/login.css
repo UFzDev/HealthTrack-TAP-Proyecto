@@ -1,0 +1,139 @@
+/* ============================================
+   LAYOUT & PANELS (LOGIN SPECIFIC)
+   ============================================ */
+
+.root-main {
+    -fx-background-color: #f8f9fa;
+}
+
+.branding-panel {
+    -fx-background-color: #005db5;
+    -fx-pref-width: 40%;
+    -fx-min-width: 400;
+}
+
+.branding-content {
+    -fx-pref-width: 100%;
+    -fx-alignment: top-left;
+}
+
+.login-panel {
+    -fx-background-color: #ffffff;
+    -fx-pref-width: 60%;
+    -fx-alignment: center;
+}
+
+.login-container {
+    -fx-max-width: 400;
+    -fx-pref-width: 400;
+}
+
+/* ============================================
+   TYPOGRAPHY (LOGIN SPECIFIC)
+   ============================================ */
+
+.brand-logo {
+    -fx-font-size: 34px;
+    -fx-font-weight: 800;
+    -fx-text-fill: #ffffff;
+}
+
+.heading-1 {
+    -fx-font-size: 46px;
+    -fx-font-weight: 800;
+    -fx-text-fill: #ffffff;
+}
+
+.heading-subtitle {
+    -fx-font-size: 15px;
+    -fx-text-fill: #d6e3ff;
+    -fx-line-spacing: 2px;
+}
+
+/* ============================================
+   STATS CONTAINER
+   ============================================ */
+
+.stats-container {
+    -fx-alignment: bottom-left;
+}
+
+.stat-number {
+    -fx-font-size: 30px;
+    -fx-font-weight: 800;
+    -fx-text-fill: #ffffff;
+}
+
+.stat-label {
+    -fx-font-size: 12px;
+    -fx-text-fill: #d6e3ff;
+    -fx-opacity: 0.9;
+}
+
+.form-title {
+    -fx-font-size: 30px;
+    -fx-font-weight: 800;
+    -fx-text-fill: #1a1a1a;
+}
+
+.form-subtitle {
+    -fx-font-size: 14px;
+    -fx-text-fill: #6b7280;
+}
+
+/* ============================================
+   LOGIN BUTTONS (CRUCIAL PARA LA PARIDAD VISUAL)
+   ============================================ */
+
+.btn-test {
+    -fx-font-size: 14px;
+    -fx-font-weight: 700;
+    -fx-padding: 12px 22px;
+    -fx-pref-height: 48;
+    -fx-pref-width: 400;
+    -fx-background-color: linear-gradient(to bottom, rgba(119, 119, 119, 0.47), #6e6e6e);
+    -fx-text-fill: #000000;
+    -fx-background-radius: 10;
+    -fx-cursor: hand;
+}
+
+.btn-test:hover {
+    -fx-background-color: linear-gradient(to bottom, rgba(136, 136, 136, 0.6), #828282);
+}
+
+.btn-login-primary {
+    -fx-font-size: 14px;
+    -fx-font-weight: 700;
+    -fx-padding: 12px 22px;
+    -fx-pref-height: 48;
+    -fx-pref-width: 400;
+    -fx-background-color: linear-gradient(to bottom, #005db5, #0052a0);
+    -fx-text-fill: #ffffff;
+    -fx-background-radius: 10;
+    -fx-cursor: hand;
+}
+
+.btn-login-primary:hover {
+    -fx-background-color: linear-gradient(to bottom, #0066cc, #005db5);
+}
+
+.btn-login-primary:pressed {
+    -fx-scale-x: 0.98;
+    -fx-scale-y: 0.98;
+}
+
+/* ============================================
+   INTERACTIVIDAD DEL ENLACE (Registro)
+   ============================================ */
+
+.forgot-link {
+    -fx-font-size: 12px;
+    -fx-text-fill: #005db5;
+    -fx-font-weight: 700;
+    -fx-cursor: hand;
+}
+
+.forgot-link:hover {
+    -fx-text-fill: #0052a0;
+    -fx-underline: true;
+}

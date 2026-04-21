@@ -1,0 +1,182 @@
+/* ============================================
+   DESIGN TOKENS & GLOBAL STYLES
+   ============================================ */
+
+.root {
+    -fx-background-color: #f8f9fa;
+    -fx-font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+}
+
+/* ============================================
+   FORM FIELDS (INPUTS & LABELS)
+   ============================================ */
+
+.field-label {
+    -fx-font-size: 11px;
+    -fx-font-weight: 700;
+    -fx-text-fill: #334155;
+}
+
+.input-field {
+    -fx-font-size: 14px;
+    -fx-padding: 12px 16px;
+    -fx-background-color: #eef3f8;
+    -fx-border-color: #cfd8e3;
+    -fx-border-width: 1;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-text-fill: #0f172a;
+    -fx-pref-height: 46;
+}
+
+.input-field:focused {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #005db5;
+    -fx-border-width: 2;
+    -fx-padding: 11px 15px;
+}
+
+.input-field:hover {
+    -fx-border-color: #aab8c8;
+}
+
+/* ============================================
+   GENERIC BUTTONS
+   ============================================ */
+
+.btn-primary,
+.btn-login-primary,
+.btn-register-primary,
+.btn-primary-gradient {
+    -fx-font-size: 14px;
+    -fx-font-weight: 700;
+    -fx-padding: 12px 22px;
+    -fx-pref-height: 48;
+    -fx-background-color: linear-gradient(to bottom, #005db5, #0052a0);
+    -fx-text-fill: #ffffff;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-cursor: hand;
+}
+
+.btn-primary:hover,
+.btn-login-primary:hover,
+.btn-register-primary:hover,
+.btn-primary-gradient:hover {
+    -fx-background-color: linear-gradient(to bottom, #0066cc, #005db5);
+}
+
+.btn-primary:pressed,
+.btn-login-primary:pressed,
+.btn-register-primary:pressed,
+.btn-primary-gradient:pressed {
+    -fx-scale-x: 0.98;
+    -fx-scale-y: 0.98;
+}
+
+.btn-secondary,
+.btn-test {
+    -fx-font-size: 14px;
+    -fx-font-weight: 600;
+    -fx-padding: 12px 22px;
+    -fx-pref-height: 48;
+    -fx-background-color: #dbe4e7;
+    -fx-text-fill: #40555f;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-cursor: hand;
+}
+
+.btn-secondary:hover,
+.btn-test:hover {
+    -fx-background-color: #cfd8e3;
+}
+
+.btn-secondary:pressed,
+.btn-test:pressed {
+    -fx-scale-x: 0.98;
+    -fx-scale-y: 0.98;
+}
+
+.btn-tertiary,
+.btn-social {
+    -fx-font-size: 14px;
+    -fx-font-weight: 600;
+    -fx-padding: 12px 22px;
+    -fx-pref-height: 48;
+    -fx-background-color: transparent;
+    -fx-text-fill: #005db5;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-cursor: hand;
+}
+
+.btn-tertiary:hover,
+.btn-social:hover {
+    -fx-background-color: rgba(0, 93, 181, 0.08);
+    -fx-text-fill: #0052a0;
+}
+
+.btn-tertiary:pressed,
+.btn-social:pressed {
+    -fx-scale-x: 0.98;
+    -fx-scale-y: 0.98;
+}
+
+/* ============================================
+   TYPOGRAPHY & LINKS
+   ============================================ */
+
+.divider-text {
+    -fx-font-size: 11px;
+    -fx-text-fill: #9ca3af;
+    -fx-font-weight: 700;
+}
+
+.footer-text {
+    -fx-font-size: 12px;
+    -fx-text-fill: #475569;
+    -fx-line-spacing: 2px;
+}
+
+.link-text {
+    -fx-font-size: 12px;
+    -fx-text-fill: #005db5;
+    -fx-font-weight: 700;
+    -fx-cursor: hand;
+}
+
+.link-text:hover {
+    -fx-text-fill: #0052a0;
+}
+
+/* ============================================
+   CHECKBOXES REUTILIZABLES
+   ============================================ */
+
+.app-filter-check {
+    -fx-text-fill: #334155;
+    -fx-font-size: 13px;
+    -fx-font-weight: 600;
+    -fx-padding: 8 0 8 0;
+}
+
+.app-filter-check:hover {
+    -fx-text-fill: #0f172a;
+}
+
+.app-filter-check .box {
+    -fx-background-color: #eef2f7;
+    -fx-border-color: #cbd5e1;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+}
+
+.app-filter-check:selected .box {
+    -fx-background-color: #005db5;
+    -fx-border-color: #005db5;
+}
+
+.app-filter-check:selected .mark {
+    -fx-background-color: white;
+}

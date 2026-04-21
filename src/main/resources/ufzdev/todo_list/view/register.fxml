@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<HBox fx:id="rootPane" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="ufzdev.todo_list.controllers.RegisterController" stylesheets="@../css/global.css, @../css/register.css"
+      styleClass="modal-card" prefWidth="980.0" prefHeight="620.0">
+
+    <VBox styleClass="register-side" prefWidth="320.0" spacing="18.0">
+        <padding>
+            <Insets top="28.0" right="24.0" bottom="28.0" left="24.0"/>
+        </padding>
+
+        <Label text="TO-DO LIST" styleClass="brand-logo"/>
+        <Label text="Disena tu propio flujo de trabajo." styleClass="register-side-title" wrapText="true"/>
+        <Label text="Unete a un espacio simple para organizar tareas con claridad y enfoque diario."
+               styleClass="register-side-text" wrapText="true"/>
+
+        <Region VBox.vgrow="ALWAYS"/>
+        <Label text="Con la confianza de equipos productivos" styleClass="register-side-foot"/>
+    </VBox>
+
+    <VBox styleClass="register-form-panel" HBox.hgrow="ALWAYS">
+        <padding>
+            <Insets top="18.0" right="18.0" bottom="18.0" left="18.0"/>
+        </padding>
+
+        <VBox styleClass="register-form-inner" spacing="14.0" VBox.vgrow="ALWAYS">
+            <padding>
+                <Insets top="22.0" right="22.0" bottom="22.0" left="22.0"/>
+            </padding>
+
+            <HBox alignment="CENTER_LEFT" spacing="10.0">
+                <VBox HBox.hgrow="ALWAYS" spacing="4.0">
+                    <Label text="Crear cuenta" styleClass="form-title"/>
+                    <Label text="Empieza hoy tu camino con enfoque." styleClass="register-form-subtitle"/>
+                </VBox>
+            </HBox>
+
+            <VBox spacing="6.0">
+                <Label text="NOMBRE" styleClass="field-label"/>
+                <TextField fx:id="nameField" promptText="Juan" styleClass="input-field"/>
+            </VBox>
+
+            <HBox spacing="10.0">
+                <VBox spacing="6.0" HBox.hgrow="ALWAYS">
+                    <Label text="USUARIO" styleClass="field-label"/>
+                    <TextField fx:id="usernameField" promptText="usuario" styleClass="input-field"/>
+                </VBox>
+                <VBox spacing="6.0" HBox.hgrow="ALWAYS">
+                    <Label text="CORREO" styleClass="field-label"/>
+                    <TextField fx:id="emailField" promptText="ejemplo@ejemplo.com" styleClass="input-field"/>
+                </VBox>
+            </HBox>
+
+            <VBox spacing="6.0">
+                <Label text="CONTRASENA" styleClass="field-label"/>
+                <PasswordField fx:id="passwordField" promptText="********" styleClass="input-field"/>
+            </VBox>
+
+            <Region VBox.vgrow="ALWAYS"/>
+
+            <HBox spacing="10.0">
+                <Button fx:id="btnRegister" text="Crear cuenta" onAction="#handleRegister" styleClass="btn-primary"
+                        prefWidth="0.0" HBox.hgrow="ALWAYS" maxWidth="1000"/>
+                <Button text="Cancelar" onAction="#handleCancel" styleClass="btn-tertiary"
+                        HBox.hgrow="ALWAYS" maxWidth="1000"/>
+            </HBox>
+        </VBox>
+    </VBox>
+</HBox>

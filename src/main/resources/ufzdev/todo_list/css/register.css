@@ -1,0 +1,83 @@
+/* ============================================
+   CONTAINER & LAYOUT
+   ============================================ */
+
+.modal-card {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #d5dbe3;
+    -fx-border-width: 0 0 0 1;
+}
+
+/* ============================================
+   LEFT SIDE: REGISTER BRANDING
+   ============================================ */
+
+.register-side {
+    -fx-background-color: linear-gradient(to bottom, #303349, #000000);
+}
+
+.brand-logo {
+    -fx-font-size: 24px;
+    -fx-font-weight: 800;
+    -fx-text-fill: #ffffff;
+}
+
+.register-side-title {
+    -fx-font-size: 28px;
+    -fx-font-weight: 800;
+    -fx-text-fill: #ffffff;
+}
+
+.register-side-text {
+    -fx-font-size: 13px;
+    -fx-text-fill: #dbe3ee;
+    -fx-line-spacing: 2px;
+}
+
+.register-side-foot {
+    -fx-font-size: 11px;
+    -fx-font-weight: 600;
+    -fx-text-fill: #cfd8e3;
+}
+
+/* ============================================
+   RIGHT SIDE: FORM PANEL
+   ============================================ */
+
+.register-form-panel {
+    -fx-background-color: #ffffff;
+}
+
+.register-form-inner {
+    -fx-background-color: #ffffff;
+}
+
+.form-title {
+    -fx-font-size: 30px;
+    -fx-font-weight: 800;
+    -fx-text-fill: #1a1a1a;
+}
+
+.register-form-subtitle {
+    -fx-font-size: 14px;
+    -fx-text-fill: #5b6475;
+}
+
+/* ============================================
+   SPECIFIC BUTTONS
+   ============================================ */
+
+.btn-register-primary {
+    -fx-font-size: 14px;
+    -fx-font-weight: 700;
+    -fx-padding: 12px 22px;
+    -fx-pref-height: 48;
+    -fx-background-color: linear-gradient(to bottom, #005db5, #0052a0);
+    -fx-text-fill: #ffffff;
+    -fx-background-radius: 10;
+    -fx-cursor: hand;
+}
+
+.btn-register-primary:hover {
+    -fx-background-color: linear-gradient(to bottom, #0066cc, #005db5);
+}
