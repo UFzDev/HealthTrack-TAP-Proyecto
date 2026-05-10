@@ -26,7 +26,7 @@ tasks.withType<JavaCompile> {
 }
 
 application {
-    mainClass.set("ufzdev.todo_list.Launcher")
+    mainClass.set("ufzdev.HealthTrack.Launcher")
 }
 
 javafx {

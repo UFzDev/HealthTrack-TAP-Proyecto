@@ -9,7 +9,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.layout.Region?>
 
-<HBox xmlns:fx="http://javafx.com/fxml" fx:controller="ufzdev.todo_list.controllers.LoginController"
+<HBox xmlns:fx="http://javafx.com/fxml" fx:controller="ufzdev.HealthTrack.controllers.LoginController"
       stylesheets="@../css/global.css, @../css/login.css" styleClass="root">
 
     <VBox styleClass="branding-panel" HBox.hgrow="ALWAYS">
@@ -24,7 +24,7 @@
                 <Label text="Monitoreo central" styleClass="heading-1"/>
                 <Label text="para una vida" styleClass="heading-1"/>
                 <Label text="más saludable" styleClass="heading-1"/>
-                <Label text="plataforma colaborativa diseñada para el monitoreo y prevención de enfermedades"
+                <Label text="Plataforma colaborativa diseñada para el monitoreo y prevención de enfermedades crónicas como la hipertensión, diabetes y obesidad."
                        styleClass="heading-subtitle" wrapText="true"/>
             </VBox>
 

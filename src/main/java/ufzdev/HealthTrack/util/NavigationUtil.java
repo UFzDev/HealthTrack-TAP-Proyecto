@@ -1,4 +1,4 @@
-package ufzdev.todo_list.util;
+package ufzdev.HealthTrack.util;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -10,7 +10,7 @@ import java.io.IOException;
 public class NavigationUtil {
 
     // Ruta base
-    private static final String BASE_PATH = "/ufzdev/todo_list/view/";
+    private static final String BASE_PATH = "/ufzdev/HealthTrack/view/";
 
     private static void renderView(Stage stage, String fxmlFile, String title, int width, int height) {
         try {
@@ -74,7 +74,7 @@ public class NavigationUtil {
     }
 
     public static void goToRegister() {
-        showModal("register.fxml", "Crear Cuenta - ToDo List", 1000, 500);
+        showModal("register.fxml", "Crear Cuenta - HealthTrack", 1000, 500);
     }
 
     public static void goToNewTask() {

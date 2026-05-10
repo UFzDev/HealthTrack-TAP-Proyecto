@@ -1,9 +1,9 @@
-package ufzdev.todo_list.services;
+package ufzdev.HealthTrack.services;
 
-import ufzdev.todo_list.models.UserModel;
-import ufzdev.todo_list.reports.Report;
-import ufzdev.todo_list.reports.ReportFactory;
-import ufzdev.todo_list.util.UserSessionUtil;
+import ufzdev.HealthTrack.models.UserModel;
+import ufzdev.HealthTrack.reports.Report;
+import ufzdev.HealthTrack.reports.ReportFactory;
+import ufzdev.HealthTrack.util.UserSessionUtil;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;

@@ -1,4 +1,4 @@
-package ufzdev.todo_list.util;
+package ufzdev.HealthTrack.util;
 
 public enum StatisticsPeriod {
     WEEK("Semana"),

@@ -1,8 +1,8 @@
-package ufzdev.todo_list.reports;
+package ufzdev.HealthTrack.reports;
 
-import ufzdev.todo_list.models.TaskModel;
-import ufzdev.todo_list.reports.strategies.ExportStrategy;
-import ufzdev.todo_list.reports.strategies.PdfExportStrategy;
+import ufzdev.HealthTrack.models.TaskModel;
+import ufzdev.HealthTrack.reports.strategies.ExportStrategy;
+import ufzdev.HealthTrack.reports.strategies.PdfExportStrategy;
 
 import java.nio.file.Path;
 import java.util.List;

@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 
 <HBox fx:id="rootPane" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="ufzdev.todo_list.controllers.RegisterController" stylesheets="@../css/global.css, @../css/register.css"
+      fx:controller="ufzdev.HealthTrack.controllers.RegisterController" stylesheets="@../css/global.css, @../css/register.css"
       styleClass="modal-card" prefWidth="980.0" prefHeight="620.0">
 
     <VBox styleClass="register-side" prefWidth="320.0" spacing="18.0">
@@ -18,13 +18,10 @@
             <Insets top="28.0" right="24.0" bottom="28.0" left="24.0"/>
         </padding>
 
-        <Label text="TO-DO LIST" styleClass="brand-logo"/>
-        <Label text="Disena tu propio flujo de trabajo." styleClass="register-side-title" wrapText="true"/>
-        <Label text="Unete a un espacio simple para organizar tareas con claridad y enfoque diario."
-               styleClass="register-side-text" wrapText="true"/>
+        <Label text="HealthTrack" styleClass="brand-logo"/>
+        <Label text="Registra Medicos, Pacientes y Adminsitradores" styleClass="register-side-title" wrapText="true"/>
 
         <Region VBox.vgrow="ALWAYS"/>
-        <Label text="Con la confianza de equipos productivos" styleClass="register-side-foot"/>
     </VBox>
 
     <VBox styleClass="register-form-panel" HBox.hgrow="ALWAYS">
@@ -40,7 +37,6 @@
             <HBox alignment="CENTER_LEFT" spacing="10.0">
                 <VBox HBox.hgrow="ALWAYS" spacing="4.0">
                     <Label text="Crear cuenta" styleClass="form-title"/>
-                    <Label text="Empieza hoy tu camino con enfoque." styleClass="register-form-subtitle"/>
                 </VBox>
             </HBox>
 

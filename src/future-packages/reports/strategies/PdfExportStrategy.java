@@ -1,4 +1,4 @@
-package ufzdev.todo_list.reports.strategies;
+package ufzdev.HealthTrack.reports.strategies;
 
 import com.itextpdf.kernel.colors.ColorConstants;
 import com.itextpdf.kernel.pdf.PdfDocument;
@@ -8,7 +8,7 @@ import com.itextpdf.layout.element.Cell;
 import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.properties.UnitValue;
-import ufzdev.todo_list.reports.ReportDataUtil;
+import ufzdev.HealthTrack.reports.ReportDataUtil;
 
 import java.nio.file.Files;
 import java.nio.file.Path;

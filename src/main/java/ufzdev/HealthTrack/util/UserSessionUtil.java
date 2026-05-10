@@ -1,9 +1,6 @@
-package ufzdev.todo_list.util;
+package ufzdev.HealthTrack.util;
 
-import ufzdev.todo_list.models.UserModel;
-
-import java.util.ArrayList;
-import java.util.List;
+import ufzdev.HealthTrack.models.UserModel;
 
 public class UserSessionUtil {
     private static UserSessionUtil instance;

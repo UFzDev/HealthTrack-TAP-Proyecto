@@ -1,4 +1,4 @@
-package ufzdev.todo_list;
+package ufzdev.HealthTrack;
 
 import javafx.application.Application;
 

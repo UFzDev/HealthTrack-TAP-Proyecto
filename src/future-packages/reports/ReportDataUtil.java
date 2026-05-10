@@ -1,7 +1,7 @@
-package ufzdev.todo_list.reports;
+package ufzdev.HealthTrack.reports;
 
-import ufzdev.todo_list.models.CategoryModel;
-import ufzdev.todo_list.models.TaskModel;
+import ufzdev.HealthTrack.models.CategoryModel;
+import ufzdev.HealthTrack.models.TaskModel;
 
 import java.text.SimpleDateFormat;
 import java.util.List;

@@ -1,4 +1,4 @@
-package ufzdev.todo_list.reports.strategies;
+package ufzdev.HealthTrack.reports.strategies;
 
 import java.nio.file.Path;
 import java.util.List;

@@ -1,17 +1,11 @@
-package ufzdev.todo_list.services;
+package ufzdev.HealthTrack.services;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.UserRecord;
-import ufzdev.todo_list.dao.UserDao;
-import ufzdev.todo_list.dao.UserFirestoreDao;
-import ufzdev.todo_list.models.StatusModel;
-import ufzdev.todo_list.models.UserModel;
-import ufzdev.todo_list.util.AlertsUtil;
-
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.UUID;
+import ufzdev.HealthTrack.dao.UserDao;
+import ufzdev.HealthTrack.dao.UserFirestoreDao;
+import ufzdev.HealthTrack.models.UserModel;
+import ufzdev.HealthTrack.util.AlertsUtil;
 
 public class UserService {
     private static final UserDao USER_DAO = new UserFirestoreDao();

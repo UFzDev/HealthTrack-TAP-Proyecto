@@ -1,6 +1,6 @@
-package ufzdev.todo_list.dao;
+package ufzdev.HealthTrack.dao;
 
-import ufzdev.todo_list.models.UserModel;
+import ufzdev.HealthTrack.models.UserModel;
 
 public interface UserDao {
     UserModel findById(String uid) throws Exception;

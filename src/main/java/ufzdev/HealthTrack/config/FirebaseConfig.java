@@ -1,11 +1,11 @@
-package ufzdev.todo_list.config;
+package ufzdev.HealthTrack.config;
 
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
 import com.google.cloud.firestore.Firestore;
 import com.google.firebase.cloud.FirestoreClient;
-import ufzdev.todo_list.util.AlertsUtil;
+import ufzdev.HealthTrack.util.AlertsUtil;
 
 import java.io.InputStream;
 

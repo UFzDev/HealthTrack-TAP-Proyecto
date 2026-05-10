@@ -1,4 +1,4 @@
-package ufzdev.todo_list.models;
+package ufzdev.HealthTrack.models;
 
 public class StatusModel {
     String id;

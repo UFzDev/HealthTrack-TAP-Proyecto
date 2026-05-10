@@ -1,4 +1,4 @@
-package ufzdev.todo_list.controllers;
+package ufzdev.HealthTrack.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -6,11 +6,11 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
-import ufzdev.todo_list.models.UserModel;
-import ufzdev.todo_list.services.UserService;
-import ufzdev.todo_list.util.AlertsUtil;
-import ufzdev.todo_list.util.NavigationUtil;
-import ufzdev.todo_list.util.TaskExecutorUtil;
+import ufzdev.HealthTrack.models.UserModel;
+import ufzdev.HealthTrack.services.UserService;
+import ufzdev.HealthTrack.util.AlertsUtil;
+import ufzdev.HealthTrack.util.NavigationUtil;
+import ufzdev.HealthTrack.util.TaskExecutorUtil;
 
 public class RegisterController {
 

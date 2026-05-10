@@ -1,7 +1,7 @@
-package ufzdev.todo_list.util;
+package ufzdev.HealthTrack.util;
 
-import ufzdev.todo_list.models.CategoryModel;
-import ufzdev.todo_list.models.TaskModel;
+import ufzdev.HealthTrack.models.CategoryModel;
+import ufzdev.HealthTrack.models.TaskModel;
 
 import java.time.Instant;
 import java.time.LocalDate;

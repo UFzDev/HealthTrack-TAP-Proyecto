@@ -1,4 +1,4 @@
-package ufzdev.todo_list.reports.strategies;
+package ufzdev.HealthTrack.reports.strategies;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
@@ -7,7 +7,7 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import ufzdev.todo_list.reports.ReportDataUtil;
+import ufzdev.HealthTrack.reports.ReportDataUtil;
 
 import java.io.OutputStream;
 import java.nio.file.Files;

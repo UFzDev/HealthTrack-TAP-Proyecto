@@ -1,12 +1,12 @@
-package ufzdev.todo_list;
+package ufzdev.HealthTrack;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
 
 import com.google.cloud.firestore.Firestore;
-import ufzdev.todo_list.util.AlertsUtil;
-import ufzdev.todo_list.config.FirebaseConfig;
-import ufzdev.todo_list.util.NavigationUtil;
+import ufzdev.HealthTrack.util.AlertsUtil;
+import ufzdev.HealthTrack.config.FirebaseConfig;
+import ufzdev.HealthTrack.util.NavigationUtil;
 
 import java.io.IOException;
 

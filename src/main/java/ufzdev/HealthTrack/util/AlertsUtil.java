@@ -1,4 +1,4 @@
-package ufzdev.todo_list.util;
+package ufzdev.HealthTrack.util;
 
 import javafx.application.Platform;
 import javafx.geometry.Pos;

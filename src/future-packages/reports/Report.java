@@ -1,6 +1,6 @@
-package ufzdev.todo_list.reports;
+package ufzdev.HealthTrack.reports;
 
-import ufzdev.todo_list.models.TaskModel;
+import ufzdev.HealthTrack.models.TaskModel;
 
 import java.nio.file.Path;
 import java.util.List;
