@@ -18,13 +18,13 @@
                 <Insets top="60" bottom="60" left="60" right="60"/>
             </padding>
 
-            <Label text="TO-DO LIST - UFzDev" styleClass="brand-logo"/>
+            <Label text="HealthTrack Community" styleClass="brand-logo"/>
 
             <VBox spacing="5.0">
-                <Label text="Organiza tu día" styleClass="heading-1"/>
-                <Label text="Gestiona tareas" styleClass="heading-1"/>
-                <Label text="Manten el Control" styleClass="heading-1"/>
-                <Label text="Espacio de trabajo para gestionar tareas y proyectos."
+                <Label text="Monitoreo central" styleClass="heading-1"/>
+                <Label text="para una vida" styleClass="heading-1"/>
+                <Label text="más saludable" styleClass="heading-1"/>
+                <Label text="plataforma colaborativa diseñada para el monitoreo y prevención de enfermedades"
                        styleClass="heading-subtitle" wrapText="true"/>
             </VBox>
 
@@ -32,12 +32,12 @@
 
             <HBox spacing="60.0" styleClass="stats-container">
                 <VBox>
-                    <Label text="99%" styleClass="stat-number"/>
-                    <Label text="Productividad" styleClass="stat-label"/>
+                    <Label text="Sincronización" styleClass="stat-number"/>
+                    <Label text="Firebase" styleClass="stat-label"/>
                 </VBox>
                 <VBox>
-                    <Label text="24k+" styleClass="stat-number"/>
-                    <Label text="Usuarios" styleClass="stat-label"/>
+                    <Label text="Reportes Clínicos" styleClass="stat-number"/>
+                    <Label text="Exportación" styleClass="stat-label"/>
                 </VBox>
             </HBox>
         </VBox>
@@ -51,7 +51,7 @@
 
             <VBox spacing="8.0">
                 <Label text="Bienvenido" styleClass="form-title"/>
-                <Label text="Ingresa tus credenciales para acceder a tu espacio de trabajo."
+                <Label text="Ingresa tus credenciales para acceder a tu espacio en HealthTrack"
                        styleClass="form-subtitle" wrapText="true"/>
             </VBox>
 

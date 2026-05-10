@@ -3,11 +3,11 @@
    ============================================ */
 
 .root-main {
-    -fx-background-color: #f8f9fa;
+    -fx-background-color: #f6faf8;
 }
 
 .branding-panel {
-    -fx-background-color: #005db5;
+    -fx-background-color: linear-gradient(to bottom, #12B58A, #0B9A7B);
     -fx-pref-width: 40%;
     -fx-min-width: 400;
 }
@@ -46,7 +46,7 @@
 
 .heading-subtitle {
     -fx-font-size: 15px;
-    -fx-text-fill: #d6e3ff;
+    -fx-text-fill: #dff6ef;
     -fx-line-spacing: 2px;
 }
 
@@ -107,14 +107,14 @@
     -fx-padding: 12px 22px;
     -fx-pref-height: 48;
     -fx-pref-width: 400;
-    -fx-background-color: linear-gradient(to bottom, #005db5, #0052a0);
+    -fx-background-color: linear-gradient(to bottom, #12B58A, #0B9A7B);
     -fx-text-fill: #ffffff;
     -fx-background-radius: 10;
     -fx-cursor: hand;
 }
 
 .btn-login-primary:hover {
-    -fx-background-color: linear-gradient(to bottom, #0066cc, #005db5);
+    -fx-background-color: linear-gradient(to bottom, #0A8368, #08745E);
 }
 
 .btn-login-primary:pressed {
@@ -128,12 +128,12 @@
 
 .forgot-link {
     -fx-font-size: 12px;
-    -fx-text-fill: #005db5;
+    -fx-text-fill: #0B9A7B;
     -fx-font-weight: 700;
     -fx-cursor: hand;
 }
 
 .forgot-link:hover {
-    -fx-text-fill: #0052a0;
+    -fx-text-fill: #08745E;
     -fx-underline: true;
 }

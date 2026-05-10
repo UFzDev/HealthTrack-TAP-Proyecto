@@ -3,7 +3,7 @@
    ============================================ */
 
 .root {
-    -fx-background-color: #f8f9fa;
+    -fx-background-color: #f6faf8;
     -fx-font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
 }
 
@@ -31,7 +31,7 @@
 
 .input-field:focused {
     -fx-background-color: #ffffff;
-    -fx-border-color: #005db5;
+    -fx-border-color: #0B9A7B;
     -fx-border-width: 2;
     -fx-padding: 11px 15px;
 }
@@ -52,7 +52,7 @@
     -fx-font-weight: 700;
     -fx-padding: 12px 22px;
     -fx-pref-height: 48;
-    -fx-background-color: linear-gradient(to bottom, #005db5, #0052a0);
+    -fx-background-color: linear-gradient(to bottom, #12B58A, #0B9A7B);
     -fx-text-fill: #ffffff;
     -fx-background-radius: 10;
     -fx-border-radius: 10;
@@ -63,7 +63,7 @@
 .btn-login-primary:hover,
 .btn-register-primary:hover,
 .btn-primary-gradient:hover {
-    -fx-background-color: linear-gradient(to bottom, #0066cc, #005db5);
+    -fx-background-color: linear-gradient(to bottom, #0A8368, #08745E);
 }
 
 .btn-primary:pressed,
@@ -105,7 +105,7 @@
     -fx-padding: 12px 22px;
     -fx-pref-height: 48;
     -fx-background-color: transparent;
-    -fx-text-fill: #005db5;
+    -fx-text-fill: #0B9A7B;
     -fx-background-radius: 10;
     -fx-border-radius: 10;
     -fx-cursor: hand;
@@ -113,8 +113,8 @@
 
 .btn-tertiary:hover,
 .btn-social:hover {
-    -fx-background-color: rgba(0, 93, 181, 0.08);
-    -fx-text-fill: #0052a0;
+    -fx-background-color: rgba(11, 154, 123, 0.08);
+    -fx-text-fill: #08745E;
 }
 
 .btn-tertiary:pressed,
@@ -141,13 +141,13 @@
 
 .link-text {
     -fx-font-size: 12px;
-    -fx-text-fill: #005db5;
+    -fx-text-fill: #0B9A7B;
     -fx-font-weight: 700;
     -fx-cursor: hand;
 }
 
 .link-text:hover {
-    -fx-text-fill: #0052a0;
+    -fx-text-fill: #08745E;
 }
 
 /* ============================================
@@ -173,8 +173,8 @@
 }
 
 .app-filter-check:selected .box {
-    -fx-background-color: #005db5;
-    -fx-border-color: #005db5;
+    -fx-background-color: #0B9A7B;
+    -fx-border-color: #0B9A7B;
 }
 
 .app-filter-check:selected .mark {

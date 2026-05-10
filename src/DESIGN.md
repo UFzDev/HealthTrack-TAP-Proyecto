@@ -1,14 +1,14 @@
-# Design System Strategy: The Focused Architect
+# Design System Strategy: HealthTrack Community
 
 ## 1. Overview & Creative North Star
-The Creative North Star for this design system is **"The Focused Architect."** In a world of cluttered productivity tools, this system rejects the "spreadsheet" aesthetic in favor of high-end editorial clarity. It is designed to feel like a premium, custom-tailored workspace where every task is given room to breathe.
+The HealthTrack Community design system is built to prioritize clarity, calm and trust — qualities important for healthcare-focused applications. The Creative North Star is **"Trusted Clarity."** The visual language aims to reduce cognitive load for users managing chronic conditions by using softer tones, generous space and clear information hierarchy.
 
-The system breaks the traditional "template" look by utilizing **intentional asymmetry** and **tonal depth**. Rather than boxing information into rigid grids with harsh borders, we use expansive white space and subtle shifts in surface values to guide the user's focus. The result is a productivity tool that feels less like a chore list and more like a high-performance dashboard for the mind.
+This system favors approachable, clinical-friendly aesthetics over generic productivity motifs. We use intentional asymmetry and tonal layering to guide attention while keeping the interface warm and reassuring. The goal is to support consistent monitoring and interpretation of health data in a way that feels professional and empathetic.
 
 ---
 
 ## 2. Colors & Surface Logic
-The palette is rooted in deep professional blues and sophisticated grays, utilizing a Material-inspired layering system to communicate importance and state.
+The palette is oriented toward health and wellbeing: teals and soft greens communicate growth, reliability and clinical trust. Grays are used for neutral surfaces while accent tones convey status (success, warning, neutral). This helps users quickly parse health information without visual noise.
 
 ### The "No-Line" Rule
 To achieve a premium, custom feel, designers are **prohibited from using 1px solid borders** for sectioning or layout containment. Boundaries must be defined solely through background color shifts. For example:
@@ -23,9 +23,9 @@ Treat the UI as a series of physical layers. Use the `surface_container` tiers t
 *   **High-Priority Overlays:** `surface_container_highest` (#dbe4e7).
 
 ### The "Glass & Gradient" Rule
-To move beyond a "generic" blue application, main action points and floating elements should utilize:
-*   **Glassmorphism:** Use `surface_container_lowest` at 80% opacity with a `backdrop-blur-md` for floating navigation bars or modal headers.
-*   **Signature Textures:** Apply a subtle linear gradient (135° from `primary` to `primary_dim`) on main CTAs. This adds "soul" and visual weight that flat colors lack.
+To create a friendly, modern clinical UI, main action points and floating elements may use:
+*   **Glassmorphism:** Use `surface_container_lowest` at 80% opacity with a `backdrop-blur-md` for floating headers or callouts.
+*   **Signature Gradients:** Apply a subtle linear gradient (135°) from `primary_dim` to `primary` on main CTAs to create warmth and emphasis without aggressive contrast.
 
 ---
 
@@ -81,4 +81,16 @@ In this design system, depth is a functional tool, not just an aesthetic choice.
 *   **Don't use 1px Dividers:** It makes the app look like a legacy system. Use white space.
 *   **Don't use Pure Black:** Always use `on_surface` (#2b3437) for text to maintain the professional, soft-minimalist tone.
 *   **Don't Over-Shadow:** If more than two elements have shadows on a screen, the design is too heavy. Revert to tonal layering.
-*   **Don't use Standard "Blue":** Always stick to the `primary` (#005db5) which has been curated for professional depth.
+*   **Don't use generic saturated blues:** Prefer the HealthTrack palette (see tokens below) built around `primary` teal/green for brand consistency.
+
+## 7. Core Color Tokens (HealthTrack)
+* primary: #0B9A7B (brand teal)
+* primary_dim: #12B58A
+* primary_dark: #08745E
+* background: #F6FAF8
+* surface_container: #EEF6F3
+* surface_container_lowest: #FFFFFF
+* on_primary: #FFFFFF
+* on_surface: #2B3437
+
+These tokens should be used across CSS for buttons, highlights and accents. Avoid returning to the original deep-blue tokens to keep the product identity aligned with healthcare and wellbeing.

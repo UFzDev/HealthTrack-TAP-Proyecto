@@ -31,7 +31,7 @@ public class NavigationUtil {
     }
 
     public static void goToLogin(Stage stage) {
-        renderView(stage, "login.fxml", "LoginController - ToDo List", 1200, 700);
+        renderView(stage, "login.fxml", "Login - HealthTrack", 1200, 700);
     }
 
 

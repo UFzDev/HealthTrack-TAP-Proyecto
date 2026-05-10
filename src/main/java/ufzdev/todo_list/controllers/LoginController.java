@@ -121,7 +121,7 @@ public class LoginController {
     @FXML
     public void handleOpenGithub() {
         btnGit.setDisable(true);
-        String githubUrl = "https://github.com/UFzDev/ToDo-List-con-JavaFX";
+        String githubUrl = "https://github.com/UFzDev/HealthTrack-TAP-Proyecto";
         TaskExecutorUtil.execute(
                 () -> {
                      if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {

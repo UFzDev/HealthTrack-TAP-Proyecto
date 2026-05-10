@@ -4,7 +4,7 @@
 
 .modal-card {
     -fx-background-color: #ffffff;
-    -fx-border-color: #d5dbe3;
+    -fx-border-color: #e6f1ee;
     -fx-border-width: 0 0 0 1;
 }
 
@@ -13,7 +13,7 @@
    ============================================ */
 
 .register-side {
-    -fx-background-color: linear-gradient(to bottom, #303349, #000000);
+    -fx-background-color: linear-gradient(to bottom, #12B58A, #0B9A7B);
 }
 
 .brand-logo {
@@ -30,7 +30,7 @@
 
 .register-side-text {
     -fx-font-size: 13px;
-    -fx-text-fill: #dbe3ee;
+    -fx-text-fill: #dff6ef;
     -fx-line-spacing: 2px;
 }
 
@@ -72,12 +72,12 @@
     -fx-font-weight: 700;
     -fx-padding: 12px 22px;
     -fx-pref-height: 48;
-    -fx-background-color: linear-gradient(to bottom, #005db5, #0052a0);
+    -fx-background-color: linear-gradient(to bottom, #12B58A, #0B9A7B);
     -fx-text-fill: #ffffff;
     -fx-background-radius: 10;
     -fx-cursor: hand;
 }
 
 .btn-register-primary:hover {
-    -fx-background-color: linear-gradient(to bottom, #0066cc, #005db5);
+    -fx-background-color: linear-gradient(to bottom, #0A8368, #08745E);
 }
