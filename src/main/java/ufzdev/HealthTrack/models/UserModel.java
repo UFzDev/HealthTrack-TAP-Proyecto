@@ -9,7 +9,7 @@ public class UserModel {
         private String username;
         private String email;
         private String password;
-        private String role;      // paciente, medico, administrador
+        private UserRole role;      // paciente, medico, administrador
 
         // Paciente
         private double imc;               //
@@ -43,8 +43,8 @@ public class UserModel {
         public String getPassword() { return password; }
         public void setPassword(String password) { this.password = password; }
 
-        public String getRole() { return role; }
-        public void setRole(String role) { this.role = role; }
+        public UserRole getRole() { return role; }
+        public void setRole(UserRole role) { this.role = role; }
 
         // Getters y Setters Paciente
         public double getImc() { return imc; }

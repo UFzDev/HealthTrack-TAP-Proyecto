@@ -8,6 +8,4 @@ public interface UserDao {
     UserModel findByUsername(String username) throws Exception;
 
     void create(String uid, UserModel userModel) throws Exception;
-
-    void updateHasSettings(String userId, boolean hasSettings) throws Exception;
 }

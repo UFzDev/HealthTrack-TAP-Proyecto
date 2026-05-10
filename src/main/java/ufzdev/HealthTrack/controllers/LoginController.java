@@ -72,7 +72,6 @@ public class LoginController {
                 () -> {
                     UserModel testUser = UserService.loginTest();
                     if (testUser != null) {
-                        testUser.setHasSettings(false);
                         UserSessionUtil.getInstance().loadSessionData(testUser);
                     }
                     return testUser;
@@ -106,10 +105,6 @@ public class LoginController {
         }
 
         NavigationUtil.goToTasks(stage);
-
-        if (!user.isHasSettings()) {
-            NavigationUtil.goToSettings();
-        }
     }
 
     @FXML

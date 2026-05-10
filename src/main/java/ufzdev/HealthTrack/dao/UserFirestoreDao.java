@@ -5,6 +5,7 @@ import com.google.cloud.firestore.Firestore;
 import com.google.cloud.firestore.QuerySnapshot;
 import ufzdev.HealthTrack.config.FirebaseConfig;
 import ufzdev.HealthTrack.models.UserModel;
+import ufzdev.HealthTrack.models.UserRole;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -33,9 +34,8 @@ public class UserFirestoreDao implements UserDao {
         user.setUsername(firstNonBlank(doc.getString("usuario"), doc.getString("username")));
         user.setEmail(firstNonBlank(doc.getString("correo"), doc.getString("email")));
         user.setPassword(doc.getString("password"));
+        user.setRole(parseRole(doc.getString("role")));
 
-        Boolean settings = doc.getBoolean("hasSettings");
-        user.setHasSettings(settings != null && settings);
         return user;
     }
 
@@ -50,17 +50,9 @@ public class UserFirestoreDao implements UserDao {
         userData.put("usuario", userModel.getUsername());
         userData.put("correo", userModel.getEmail());
         userData.put("password", userModel.getPassword());
-        userData.put("hasSettings", false);
+        userData.put("role", userModel.getRole() != null ? userModel.getRole().name() : UserRole.PACIENTE.name());
 
         db.collection("usuarios").document(uid).set(userData).get();
-    }
-
-    @Override
-    public void updateHasSettings(String userId, boolean hasSettings) throws Exception {
-        if (userId == null || userId.isBlank()) {
-            return;
-        }
-        db.collection("usuarios").document(userId).update("hasSettings", hasSettings).get();
     }
 
     @Override
@@ -79,17 +71,28 @@ public class UserFirestoreDao implements UserDao {
             return null;
         }
 
-        DocumentSnapshot doc = snapshot.getDocuments().get(0);
+        DocumentSnapshot doc = snapshot.getDocuments().getFirst();
         UserModel user = new UserModel();
         user.setId(doc.getId());
         user.setName(firstNonBlank(doc.getString("nombre"), doc.getString("name")));
         user.setUsername(firstNonBlank(doc.getString("usuario"), doc.getString("username")));
         user.setEmail(firstNonBlank(doc.getString("correo"), doc.getString("email")));
         user.setPassword(doc.getString("password"));
+        user.setRole(parseRole(doc.getString("role")));
 
-        Boolean settings = doc.getBoolean("hasSettings");
-        user.setHasSettings(settings != null && settings);
         return user;
+    }
+
+    private UserRole parseRole(String roleString) {
+        if (roleString == null || roleString.isBlank()) {
+            return UserRole.PACIENTE;
+        }
+
+        try {
+            return UserRole.valueOf(roleString.trim().toUpperCase());
+        } catch (IllegalArgumentException e) {
+            return UserRole.PACIENTE;
+        }
     }
 
     private String firstNonBlank(String primary, String fallback) {
