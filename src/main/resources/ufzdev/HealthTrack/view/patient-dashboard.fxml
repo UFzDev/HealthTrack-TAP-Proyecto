@@ -68,36 +68,7 @@
                     <Label fx:id="trendStatusLabel" text="Sin alertas críticas en este momento" styleClass="alert-ok" />
                 </VBox>
 
-                <HBox spacing="16" style="-fx-padding: 0 32 20 32;">
-                    <VBox styleClass="metric-card" HBox.hgrow="ALWAYS">
-                        <padding><Insets top="18" right="18" bottom="18" left="18" /></padding>
-                        <spacing>10</spacing>
-                        <Label text="Registrar nueva medición" style="-fx-font-size: 16px; -fx-font-weight: 700; -fx-text-fill: #0B9A7B;" />
-                        <GridPane hgap="10" vgap="10">
-                            <Label text="Sistólica" styleClass="field-label" GridPane.rowIndex="0" GridPane.columnIndex="0" />
-                            <TextField fx:id="bpSystolicInput" promptText="120" styleClass="input-field" GridPane.rowIndex="0" GridPane.columnIndex="1" />
-
-                            <Label text="Diastólica" styleClass="field-label" GridPane.rowIndex="0" GridPane.columnIndex="2" />
-                            <TextField fx:id="bpDiastolicInput" promptText="80" styleClass="input-field" GridPane.rowIndex="0" GridPane.columnIndex="3" />
-
-                            <Label text="Glucosa (mg/dL)" styleClass="field-label" GridPane.rowIndex="1" GridPane.columnIndex="0" />
-                            <TextField fx:id="glucoseInput" promptText="95" styleClass="input-field" GridPane.rowIndex="1" GridPane.columnIndex="1" />
-
-                            <Label text="Peso (kg)" styleClass="field-label" GridPane.rowIndex="1" GridPane.columnIndex="2" />
-                            <TextField fx:id="weightInput" promptText="70" styleClass="input-field" GridPane.rowIndex="1" GridPane.columnIndex="3" />
-
-                            <Label text="Altura (m)" styleClass="field-label" GridPane.rowIndex="2" GridPane.columnIndex="0" />
-                            <TextField fx:id="heightInput" promptText="1.72" styleClass="input-field" GridPane.rowIndex="2" GridPane.columnIndex="1" />
-
-                            <Label text="FC (bpm)" styleClass="field-label" GridPane.rowIndex="2" GridPane.columnIndex="2" />
-                            <TextField fx:id="heartRateInput" promptText="72" styleClass="input-field" GridPane.rowIndex="2" GridPane.columnIndex="3" />
-                        </GridPane>
-                        <HBox spacing="10" alignment="CENTER_LEFT">
-                            <Button text="Guardar medición" styleClass="btn-primary" onAction="#handleRegisterMetric" />
-                            <Label text="La fecha y hora se asignan automáticamente" styleClass="context-text" />
-                        </HBox>
-                    </VBox>
-                </HBox>
+                <!-- Registro de medición movido al modal (quick-record-modal.fxml) -->
 
                 <VBox spacing="14" style="-fx-padding: 0 32 28 32;" VBox.vgrow="ALWAYS">
                     <HBox alignment="CENTER_LEFT" spacing="10">

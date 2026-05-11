@@ -8,7 +8,6 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.ComboBox;
 import javafx.scene.chart.LineChart;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import ufzdev.HealthTrack.models.UserModel;
 import ufzdev.HealthTrack.util.UserSessionUtil;
 
@@ -36,18 +35,6 @@ public class PatientDashboardController implements Initializable {
     @FXML
     private BarChart<String, Number> averagesChart;
     @FXML
-    private TextField bpSystolicInput;
-    @FXML
-    private TextField bpDiastolicInput;
-    @FXML
-    private TextField glucoseInput;
-    @FXML
-    private TextField weightInput;
-    @FXML
-    private TextField heightInput;
-    @FXML
-    private TextField heartRateInput;
-    @FXML
     private ComboBox<String> periodSelector;
 
     @Override
@@ -72,27 +59,6 @@ public class PatientDashboardController implements Initializable {
         renderCharts(selected);
     }
 
-    @FXML
-    private void handleRegisterMetric() {
-        double systolic = parseOrDefault(bpSystolicInput, 120);
-        double diastolic = parseOrDefault(bpDiastolicInput, 80);
-        double glucose = parseOrDefault(glucoseInput, 95);
-        double weight = parseOrDefault(weightInput, 70);
-        double height = parseOrDefault(heightInput, 1.72);
-        double heartRate = parseOrDefault(heartRateInput, 72);
-
-        double imc = height > 0 ? weight / (height * height) : 0;
-
-        bpValue.setText(String.format("%.0f/%.0f mmHg", systolic, diastolic));
-        glucoseValue.setText(String.format("%.0f mg/dL", glucose));
-        heartRateValue.setText(String.format("%.0f bpm", heartRate));
-        if (imc > 0) {
-            imcValue.setText(String.format("%.1f", imc));
-        }
-
-        lastRecordLabel.setText("Ultimo registro: " + LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")));
-        updateCriticalAlert(systolic, diastolic, glucose, heartRate);
-    }
 
     private void renderCharts(String period) {
         trendChart.getData().clear();
@@ -148,15 +114,6 @@ public class PatientDashboardController implements Initializable {
         trendStatusLabel.getStyleClass().add(styleClass);
     }
 
-    private double parseOrDefault(TextField field, double defaultValue) {
-        if (field == null || field.getText() == null || field.getText().isBlank()) {
-            return defaultValue;
-        }
-        try {
-            return Double.parseDouble(field.getText().trim());
-        } catch (NumberFormatException ex) {
-            return defaultValue;
-        }
-    }
+    // Registro de medición ahora se realiza desde el modal `quick-record-modal.fxml`.
 }
 

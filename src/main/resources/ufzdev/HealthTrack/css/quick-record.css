@@ -1,0 +1,52 @@
+/* Quick record modal styles */
+
+.quick-modal-root {
+    -fx-background-color: #f8fcfa;
+}
+
+.quick-modal-title {
+    -fx-font-size: 24px;
+    -fx-font-weight: 700;
+    -fx-text-fill: #0B9A7B;
+}
+
+.quick-meta-label {
+    -fx-font-size: 12px;
+    -fx-font-weight: 700;
+    -fx-text-fill: #64748b;
+}
+
+.quick-meta-value {
+    -fx-font-size: 13px;
+    -fx-font-weight: 600;
+    -fx-text-fill: #1f2937;
+}
+
+.quick-meta-separator {
+    -fx-font-size: 12px;
+    -fx-text-fill: #94a3b8;
+}
+
+.quick-grid {
+    -fx-padding: 14;
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 12;
+    -fx-border-radius: 12;
+    -fx-border-color: #e5efeb;
+}
+
+.quick-imc-preview {
+    -fx-font-size: 18px;
+    -fx-font-weight: 700;
+    -fx-text-fill: #0B9A7B;
+    -fx-padding: 12 16 12 16;
+    -fx-background-color: #eefaf6;
+    -fx-background-radius: 10;
+}
+
+.quick-btn {
+    -fx-font-size: 14px;
+    -fx-font-weight: 700;
+    -fx-padding: 12 18 12 18;
+}
+

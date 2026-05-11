@@ -11,35 +11,45 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 <BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="ufzdev.HealthTrack.controllers.MainContainerController"
-            stylesheets="@../css/global.css, @../css/main.css" prefWidth="1400" prefHeight="900">
+            stylesheets="@../css/global.css, @../css/main.css" prefWidth="1400" prefHeight="900"
+            style="-fx-background-color: #f6faf8;">
 
     <!-- Sidebar -->
     <left>
-        <VBox fx:id="sidebar" styleClass="sidebar" spacing="16.0" BorderPane.alignment="CENTER">
-            <padding>
-                <Insets top="20" right="12" bottom="20" left="12"/>
-            </padding>
+        <AnchorPane>
+            <children>
+                <VBox fx:id="sidebar" styleClass="sidebar" spacing="16.0" AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0" BorderPane.alignment="CENTER">
+                    <padding>
+                        <Insets top="20" right="12" bottom="20" left="12"/>
+                    </padding>
 
-            <Label text="HealthTrack" styleClass="brand-logo" />
-            <Separator style="-fx-text-fill: rgba(255,255,255,0.2);"/>
-            <Button text="Inicio" fx:id="btnHome" onAction="#openHome" styleClass="btn-tertiary" maxWidth="1.7976931348623157E308" />
-            <Button text="Perfil" fx:id="btnProfile" onAction="#openProfile" styleClass="btn-tertiary" maxWidth="1.7976931348623157E308" />
-            <Button text="Configuración" fx:id="btnSettings" onAction="#openSettings" styleClass="btn-tertiary" maxWidth="1.7976931348623157E308" />
-            <Button text="Cerrar Sesión" fx:id="btnLogout" onAction="#handleLogout" styleClass="btn-tertiary" maxWidth="1.7976931348623157E308" />
-            <StackPane VBox.vgrow="ALWAYS" />
-        </VBox>
+                    <Separator style="-fx-text-fill: rgba(255,255,255,0.2);"/>
+                    <Button text="Inicio" fx:id="btnHome" onAction="#openHome" styleClass="btn-tertiary" maxWidth="1.7976931348623157E308" />
+                    <Button text="Perfil" fx:id="btnProfile" onAction="#openProfile" styleClass="btn-tertiary" maxWidth="1.7976931348623157E308" />
+                    <Button text="Configuración" fx:id="btnSettings" onAction="#openSettings" styleClass="btn-tertiary" maxWidth="1.7976931348623157E308" />
+                    <Button text="Cerrar Sesión" fx:id="btnLogout" onAction="#handleLogout" styleClass="btn-tertiary" maxWidth="1.7976931348623157E308" />
+                    <StackPane VBox.vgrow="ALWAYS" />
+                </VBox>
+            </children>
+        </AnchorPane>
     </left>
 
     <!-- Top bar -->
     <top>
-        <HBox styleClass="topbar" spacing="12.0" BorderPane.alignment="CENTER">
+        <VBox styleClass="topbar" spacing="0" BorderPane.alignment="CENTER">
             <padding>
-                <Insets top="12" bottom="12" left="18" right="18"/>
+                <Insets top="14" bottom="14" left="18" right="18"/>
             </padding>
-            <Label fx:id="welcomeLabel" text="Bienvenido" styleClass="form-title" />
-            <StackPane HBox.hgrow="ALWAYS" />
-            <Label fx:id="dateLabel" text="" styleClass="footer-text" />
-        </HBox>
+            <HBox spacing="8" alignment="CENTER_LEFT">
+                <Label text="HealthTrack" styleClass="app-title" />
+                <Label fx:id="userRoleLabel" text="• Paciente" styleClass="user-role-badge" />
+            </HBox>
+            <HBox spacing="12" alignment="CENTER_LEFT" VBox.vgrow="ALWAYS">
+                <Label fx:id="welcomeLabel" text="Bienvenido" styleClass="welcome-text" />
+                <StackPane HBox.hgrow="ALWAYS" />
+                <Label fx:id="dateLabel" text="" styleClass="date-text" />
+            </HBox>
+        </VBox>
     </top>
 
     <!-- Content area -->
@@ -49,11 +59,12 @@
 
     <!-- Floating action placeholder (bottom-right) -->
     <bottom>
-        <HBox alignment="BOTTOM_RIGHT" spacing="10" BorderPane.alignment="CENTER_RIGHT">
+        <HBox alignment="BOTTOM_RIGHT" spacing="10" BorderPane.alignment="CENTER_RIGHT" style="-fx-background-color: transparent;">
             <padding>
                 <Insets right="24" bottom="24"/>
             </padding>
-            <Button fx:id="fabRecord" text="+ Registrar Medición" onAction="#handleQuickRecord" styleClass="btn-primary fab" />
+            <Button fx:id="fabRecord" text="+ Registrar Medicion" onAction="#handleQuickRecord" styleClass="btn-primary fab btn-open-record-modal"
+                    style="-fx-background-color: linear-gradient(to bottom, #14c298, #0b9a7b); -fx-text-fill: white; -fx-background-radius: 10; -fx-border-radius: 10; -fx-padding: 12 18 12 18;" />
         </HBox>
     </bottom>
 
