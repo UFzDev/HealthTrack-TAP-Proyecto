@@ -9,12 +9,20 @@ import ufzdev.HealthTrack.models.UserRole;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
+import com.google.cloud.firestore.QueryDocumentSnapshot;
 
 public class UserFirestoreDao implements UserDao {
     private final Firestore db;
 
     public UserFirestoreDao() {
         this.db = FirebaseConfig.getInstance().getFirestore();
+    }
+
+    // Exponer firestore para casos puntuales donde sea necesario
+    public Firestore getFirestore() {
+        return this.db;
     }
 
     @Override
@@ -81,6 +89,78 @@ public class UserFirestoreDao implements UserDao {
         user.setRole(parseRole(doc.getString("role")));
 
         return user;
+    }
+
+    @Override
+    public java.util.List<UserModel> listByRole(UserRole role) throws Exception {
+        java.util.List<UserModel> result = new ArrayList<>();
+        if (role == null) return result;
+
+        QuerySnapshot snapshot = db.collection("usuarios")
+                .whereEqualTo("role", role.name())
+                .get()
+                .get();
+
+        if (snapshot.isEmpty()) return result;
+
+        for (QueryDocumentSnapshot doc : snapshot.getDocuments()) {
+            UserModel user = new UserModel();
+            user.setId(doc.getId());
+            user.setName(firstNonBlank(doc.getString("nombre"), doc.getString("name")));
+            user.setUsername(firstNonBlank(doc.getString("usuario"), doc.getString("username")));
+            user.setEmail(firstNonBlank(doc.getString("correo"), doc.getString("email")));
+            user.setPassword(doc.getString("password"));
+            user.setRole(parseRole(doc.getString("role")));
+            // campos opcionales
+            user.setDoctorAsignadoId(firstNonBlank(doc.getString("doctorAsignadoId"), doc.getString("doctorAssignedId")));
+            result.add(user);
+        }
+
+        return result;
+    }
+
+    @Override
+    public java.util.List<UserModel> listPatientsByDoctor(String doctorId) throws Exception {
+        java.util.List<UserModel> result = new ArrayList<>();
+        if (doctorId == null || doctorId.isBlank()) return result;
+
+        QuerySnapshot snapshot = db.collection("usuarios")
+                .whereEqualTo("role", UserRole.PACIENTE.name())
+                .whereEqualTo("doctorAsignadoId", doctorId)
+                .get()
+                .get();
+
+        if (snapshot.isEmpty()) return result;
+
+        for (QueryDocumentSnapshot doc : snapshot.getDocuments()) {
+            UserModel user = new UserModel();
+            user.setId(doc.getId());
+            user.setName(firstNonBlank(doc.getString("nombre"), doc.getString("name")));
+            user.setUsername(firstNonBlank(doc.getString("usuario"), doc.getString("username")));
+            user.setEmail(firstNonBlank(doc.getString("correo"), doc.getString("email")));
+            user.setPassword(doc.getString("password"));
+            user.setRole(parseRole(doc.getString("role")));
+            user.setDoctorAsignadoId(firstNonBlank(doc.getString("doctorAsignadoId"), doc.getString("doctorAssignedId")));
+            result.add(user);
+        }
+
+        return result;
+    }
+
+    @Override
+    public int countAll() throws Exception {
+        QuerySnapshot snapshot = db.collection("usuarios").get().get();
+        return snapshot.size();
+    }
+
+    @Override
+    public int countByRole(UserRole role) throws Exception {
+        if (role == null) return 0;
+        QuerySnapshot snapshot = db.collection("usuarios")
+                .whereEqualTo("role", role.name())
+                .get()
+                .get();
+        return snapshot.size();
     }
 
     private UserRole parseRole(String roleString) {

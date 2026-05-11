@@ -21,7 +21,7 @@ public class NavigationUtil {
             stage.setTitle(title);
             stage.setScene(scene);
             stage.centerOnScreen();
-            //stage.setMaximized(true);
+            stage.setMaximized(true);
             stage.show();
 
         } catch (IOException e) {

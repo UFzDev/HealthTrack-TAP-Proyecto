@@ -12,6 +12,12 @@ import ufzdev.HealthTrack.util.AlertsUtil;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.List;
+import ufzdev.HealthTrack.dao.UserDao;
+import ufzdev.HealthTrack.dao.UserFirestoreDao;
+import ufzdev.HealthTrack.models.UserModel;
+import ufzdev.HealthTrack.util.UserSessionUtil;
+import ufzdev.HealthTrack.models.UserRole;
 
 public class DoctorDashboardController {
     @javafx.fxml.FXML
@@ -50,7 +56,7 @@ public class DoctorDashboardController {
     @javafx.fxml.FXML
     private void initialize() {
         bindTables();
-        loadMockData();
+        loadFromDatabase();
     }
 
     @javafx.fxml.FXML
@@ -70,51 +76,45 @@ public class DoctorDashboardController {
         patientTrendColumn.setCellValueFactory(data -> new ReadOnlyStringWrapper(data.getValue().getOrDefault("trend", "-")));
     }
 
-    private void loadMockData() {
-        activePatientsLabel.setText("18");
-        criticalAlertsLabel.setText("3");
-        pendingReviewLabel.setText("6");
+    private void loadFromDatabase() {
+        UserDao userDao = new UserFirestoreDao();
+        UserModel current = UserSessionUtil.getInstance().getUser();
 
-        ArrayList<Map<String, String>> alertsSeed = new ArrayList<Map<String, String>>();
-        alertsSeed.add(row("patient", "Ana Perez", "reading", "PA 152/98 - FC 112", "risk", "Alto", "time", "Hace 5 min"));
-        alertsSeed.add(row("patient", "Luis Gomez", "reading", "Glucosa 210 mg/dL", "risk", "Alto", "time", "Hace 12 min"));
-        alertsSeed.add(row("patient", "Elena Ruiz", "reading", "PA 140/90", "risk", "Moderado", "time", "Hace 20 min"));
-        javafx.collections.ObservableList<Map<String, String>> alerts = javafx.collections.FXCollections.observableArrayList(alertsSeed);
-        alertsTable.setItems(alerts);
+        try {
+            List<UserModel> patients = new ArrayList<>();
+            if (current != null && current.getRole() == UserRole.MEDICO) {
+                patients = userDao.listPatientsByDoctor(current.getId());
+            } else {
+                // Si no es medico, mostrar todos los pacientes (por defecto una vista reducida)
+                patients = userDao.listByRole(UserRole.PACIENTE);
+            }
 
-        ArrayList<Map<String, String>> patientsSeed = new ArrayList<Map<String, String>>();
-        patientsSeed.add(row("name", "Ana Perez", "condition", "Hipertension", "last", "152/98 - 112 bpm", "trend", "Subiendo"));
-        patientsSeed.add(row("name", "Luis Gomez", "condition", "Diabetes tipo 2", "last", "210 mg/dL", "trend", "Inestable"));
-        patientsSeed.add(row("name", "Marta Diaz", "condition", "Obesidad", "last", "IMC 30.2", "trend", "Bajando"));
-        patientsSeed.add(row("name", "Carlos Vega", "condition", "Riesgo mixto", "last", "Glucosa 126 mg/dL", "trend", "Estable"));
-        javafx.collections.ObservableList<Map<String, String>> patients = javafx.collections.FXCollections.observableArrayList(patientsSeed);
-        patientsTable.setItems(patients);
+            activePatientsLabel.setText(String.valueOf(patients.size()));
+            criticalAlertsLabel.setText("0");
+            pendingReviewLabel.setText("0");
 
-        ArrayList<PieChart.Data> pieSeed = new ArrayList<PieChart.Data>();
-        pieSeed.add(new PieChart.Data("Estable", 9));
-        pieSeed.add(new PieChart.Data("En riesgo", 6));
-        pieSeed.add(new PieChart.Data("Critico", 3));
-        getStatusPie().setLegendVisible(true);
-        getStatusPie().setLabelsVisible(true);
-        javafx.collections.ObservableList<PieChart.Data> pieData = javafx.collections.FXCollections.observableArrayList(pieSeed);
-        getStatusPie().setData(pieData);
+            ArrayList<Map<String, String>> patientsRows = new ArrayList<>();
+            for (UserModel p : patients) {
+                Map<String, String> r = new HashMap<>();
+                r.put("name", p.getName() != null ? p.getName() : p.getUsername());
+                r.put("condition", "-");
+                r.put("last", "-");
+                r.put("trend", "-");
+                patientsRows.add(r);
+            }
+            javafx.collections.ObservableList<Map<String, String>> patientsObs = javafx.collections.FXCollections.observableArrayList(patientsRows);
+            patientsTable.setItems(patientsObs);
 
-        ArrayList<String> recommendationsSeed = new ArrayList<String>();
-        recommendationsSeed.add("Priorizar seguimiento de pacientes con PA > 140/90.");
-        recommendationsSeed.add("Reforzar plan alimenticio bajo en sodio y azucar.");
-        recommendationsSeed.add("Sugerir actividad en casa por pronostico de lluvia.");
-        recommendationsSeed.add("Validar medicacion en pacientes con tendencia ascendente.");
-        javafx.collections.ObservableList<String> recommendations = javafx.collections.FXCollections.observableArrayList(recommendationsSeed);
-        recommendationsList.setItems(recommendations);
+            // Vaciar o establecer datos mínimos para alertas y charts; se pueden completar con datos reales si se modelan mediciones
+            alertsTable.setItems(javafx.collections.FXCollections.observableArrayList(new ArrayList<>()));
+            recommendationsList.setItems(javafx.collections.FXCollections.observableArrayList(new ArrayList<>()));
+            getStatusPie().setData(javafx.collections.FXCollections.observableArrayList(new ArrayList<>()));
+            doctorTrendChart.getData().clear();
 
-        XYChart.Series<Integer, Number> series = new XYChart.Series<>();
-        series.getData().add(new XYChart.Data<>(1, 132));
-        series.getData().add(new XYChart.Data<>(2, 129));
-        series.getData().add(new XYChart.Data<>(3, 134));
-        series.getData().add(new XYChart.Data<>(4, 128));
-        series.getData().add(new XYChart.Data<>(5, 126));
-        series.getData().add(new XYChart.Data<>(6, 124));
-        doctorTrendChart.getData().setAll(series);
+        } catch (Exception e) {
+            System.out.println("Error cargando datos del doctor: " + e.getMessage());
+            AlertsUtil.showError("Error de datos", "No se pudieron cargar los pacientes desde la base de datos.");
+        }
     }
 
     private Map<String, String> row(String... pairs) {

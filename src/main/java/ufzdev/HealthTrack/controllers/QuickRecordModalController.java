@@ -5,15 +5,23 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import ufzdev.HealthTrack.dao.HealthMetricFirestoreDao;
+import ufzdev.HealthTrack.models.HealthMetricModel;
 import ufzdev.HealthTrack.models.UserModel;
 import ufzdev.HealthTrack.util.AlertsUtil;
 import ufzdev.HealthTrack.util.UserSessionUtil;
+import ufzdev.HealthTrack.util.ValidationException;
+import ufzdev.HealthTrack.validators.HealthMetricValidator;
 
 import java.net.URL;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
+/**
+ * Controlador del modal para registrar mediciones rápidas.
+ * Guarda cada métrica en Firestore con el DAO HealthMetricFirestoreDao.
+ */
 public class QuickRecordModalController implements Initializable {
 
     @FXML
@@ -36,8 +44,12 @@ public class QuickRecordModalController implements Initializable {
     @FXML
     private TextField heightInput;
 
+    private HealthMetricFirestoreDao metricDao;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        metricDao = new HealthMetricFirestoreDao();
+
         UserModel currentUser = UserSessionUtil.getInstance().getUser();
         if (currentUser != null) {
             String displayName = currentUser.getName() != null && !currentUser.getName().isBlank()
@@ -56,36 +68,58 @@ public class QuickRecordModalController implements Initializable {
 
     @FXML
     private void handleSave() {
-        if (UserSessionUtil.getInstance().getUser() == null) {
-            AlertsUtil.showError("Sesion", "No hay sesion activa para registrar la medicion.");
-            return;
-        }
-
-        if (hasInvalidNumber(bpSystolicInput, true)
-                || hasInvalidNumber(bpDiastolicInput, true)
-                || hasInvalidNumber(glucoseInput, true)
-                || hasInvalidNumber(heartRateInput, true)
-                || hasInvalidNumber(weightInput, true)
-                || hasInvalidNumber(heightInput, true)) {
-            AlertsUtil.showError("Formulario invalido", "Revisa los campos. Todos deben contener numeros validos.");
-            return;
-        }
-
-        double weight = Double.parseDouble(weightInput.getText().trim());
-        double height = Double.parseDouble(heightInput.getText().trim());
-
-        if (height <= 0) {
-            AlertsUtil.showError("Altura invalida", "La altura debe ser mayor que cero.");
-            return;
-        }
-
-        double imc = weight / (height * height);
-
         UserModel currentUser = UserSessionUtil.getInstance().getUser();
-        currentUser.setImc(imc);
+        if (currentUser == null || currentUser.getId() == null) {
+            AlertsUtil.showError("Sesión", "No hay sesión activa para registrar la medición.");
+            return;
+        }
 
-        AlertsUtil.showSuccess("Registro", "Medicion capturada correctamente.");
-        closeModal();
+        // Validar plausibilidad de las mediciones para evitar datos inventados
+        try {
+            HealthMetricValidator.validateQuickRecord(bpSystolicInput, bpDiastolicInput, glucoseInput, heartRateInput, weightInput, heightInput);
+        } catch (ValidationException ve) {
+            AlertsUtil.showError("Entrada inválida", ve.getMessage());
+            return;
+        }
+
+        try {
+            LocalDateTime now = LocalDateTime.now();
+
+            // Extraer valores
+            double systolic = Double.parseDouble(bpSystolicInput.getText().trim());
+            double diastolic = Double.parseDouble(bpDiastolicInput.getText().trim());
+            double glucose = Double.parseDouble(glucoseInput.getText().trim());
+            double heartRate = Double.parseDouble(heartRateInput.getText().trim());
+            double weight = Double.parseDouble(weightInput.getText().trim());
+            double height = Double.parseDouble(heightInput.getText().trim());
+
+            // Guardar cada métrica en Firestore
+            saveMetric(currentUser.getId(), "Presión", systolic, now);
+            saveMetric(currentUser.getId(), "Glucosa", glucose, now);
+            saveMetric(currentUser.getId(), "Frecuencia Cardíaca", heartRate, now);
+
+            // Calcular y guardar IMC
+            if (height > 0) {
+                double imc = weight / (height * height);
+                currentUser.setImc(imc);
+                saveMetric(currentUser.getId(), "IMC", imc, now);
+            }
+
+            AlertsUtil.showSuccess("Registro", "Medición guardada correctamente en la base de datos.");
+            closeModal();
+
+        } catch (Exception e) {
+            System.err.println("Error guardando métricas: " + e.getMessage());
+            AlertsUtil.showError("Error", "No se pudo guardar la medición. Intenta de nuevo.");
+        }
+    }
+
+    /**
+     * Guarda una métrica en Firestore.
+     */
+    private void saveMetric(String userId, String metricType, double value, LocalDateTime recordedAt) throws Exception {
+        HealthMetricModel metric = new HealthMetricModel(userId, metricType, value, recordedAt);
+        metricDao.save(metric);
     }
 
     @FXML
@@ -129,5 +163,3 @@ public class QuickRecordModalController implements Initializable {
         stage.close();
     }
 }
-
-

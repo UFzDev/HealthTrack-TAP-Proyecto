@@ -15,6 +15,8 @@ import ufzdev.HealthTrack.services.UserService;
 import ufzdev.HealthTrack.util.AlertsUtil;
 import ufzdev.HealthTrack.util.NavigationUtil;
 import ufzdev.HealthTrack.util.TaskExecutorUtil;
+import ufzdev.HealthTrack.util.ValidationException;
+import ufzdev.HealthTrack.validators.UserValidator;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -62,14 +64,22 @@ public class RegisterController implements Initializable {
             return;
         }
 
-        btnRegister.setDisable(true);
-
         UserModel newUserModel = new UserModel();
         newUserModel.setName(name);
         newUserModel.setUsername(user);
         newUserModel.setEmail(email);
         newUserModel.setPassword(password);
         newUserModel.setRole(selectedRole);
+
+        // Validar datos antes de llamar al servicio
+        try {
+            UserValidator.validateForRegistration(newUserModel);
+        } catch (ValidationException ve) {
+            AlertsUtil.showError("Registro inválido", ve.getMessage());
+            return;
+        }
+
+        btnRegister.setDisable(true);
 
         TaskExecutorUtil.execute(
                 () -> {

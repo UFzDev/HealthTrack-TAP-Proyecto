@@ -6,6 +6,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import ufzdev.HealthTrack.util.AlertsUtil;
+import ufzdev.HealthTrack.dao.UserDao;
+import ufzdev.HealthTrack.dao.UserFirestoreDao;
+import ufzdev.HealthTrack.models.UserRole;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -26,12 +29,32 @@ public class AdminDashboardController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        usersCount.setText("142");
-        doctorsCount.setText("18");
-        reportsCount.setText("27");
+        // Cargar conteos reales desde Firestore
+        UserDao userDao = new UserFirestoreDao();
+        try {
+            int totalUsers = userDao.countAll();
+            int totalDoctors = userDao.countByRole(UserRole.MEDICO);
+            usersCount.setText(String.valueOf(totalUsers));
+            doctorsCount.setText(String.valueOf(totalDoctors));
 
-        syncStatusValue.setText("Conectado");
-        apiStatusValue.setText("Parcial");
+            // Intentar contar reportes si existe la colección "reportes"
+            try {
+                int reports = userDao instanceof UserFirestoreDao ? ((UserFirestoreDao) userDao).getFirestore().collection("reportes").get().get().size() : 0;
+                reportsCount.setText(String.valueOf(reports));
+            } catch (Exception e) {
+                reportsCount.setText("-");
+            }
+
+            syncStatusValue.setText("Conectado");
+            apiStatusValue.setText("Parcial");
+
+        } catch (Exception e) {
+            // Si hay error al conectar con Firestore, mantener UI informativa
+            usersCount.setText("-");
+            doctorsCount.setText("-");
+            reportsCount.setText("-");
+            System.out.println("Error cargando datos admin: " + e.getMessage());
+        }
 
         activityLogs.setItems(FXCollections.observableArrayList(
                 "09:45 - Se registro nuevo paciente con medico asignado.",
