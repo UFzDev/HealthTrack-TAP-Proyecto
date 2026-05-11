@@ -19,10 +19,13 @@ public class UserSessionUtil {
     }
 
     public synchronized void setSessionData(UserModel userModel){
+        this.currentUserModel = userModel;
     }
 
     // Carga catalogos y tareas una sola vez al iniciar sesion.
     public synchronized void loadSessionData(UserModel userModel) throws Exception {
+        // Asigna el usuario actual a la sesión. En el futuro cargar catálogos o datos iniciales.
+        this.currentUserModel = userModel;
     }
 
     public synchronized UserModel getUser() {

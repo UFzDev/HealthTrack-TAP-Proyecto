@@ -1,0 +1,70 @@
+/* Main container specific styles */
+.sidebar {
+    -fx-background-color: linear-gradient(to bottom, #12B58A, #0B9A7B);
+    -fx-pref-width: 220px;
+    -fx-padding: 18px;
+}
+
+.sidebar .brand-logo {
+    -fx-text-fill: #ffffff;
+}
+
+.sidebar .btn-tertiary {
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 13px;
+    -fx-padding: 10 12 10 12;
+    -fx-background-color: transparent;
+}
+
+.sidebar .btn-tertiary:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.1);
+    -fx-text-fill: #ffffff;
+}
+
+.topbar {
+    -fx-background-color: #f6faf8;
+    -fx-padding: 12px 12px;
+    -fx-alignment: center-left;
+    -fx-border-color: #e6f1ee;
+    -fx-border-width: 0 0 1 0;
+}
+
+.topbar .form-title {
+    -fx-text-fill: #0B9A7B;
+    -fx-font-size: 18px;
+}
+
+.content-area {
+    -fx-padding: 18px;
+    -fx-background-color: #f6faf8;
+}
+
+.metric-card {
+    -fx-background-color: #ffffff;
+    -fx-padding: 16px;
+    -fx-background-radius: 8;
+    -fx-border-radius: 8;
+    -fx-effect: dropshadow(two-pass-box, rgba(0,0,0,0.06), 4, 0, 0, 1);
+}
+
+.metric-card .stat-number {
+    -fx-font-size: 20px;
+    -fx-font-weight: 700;
+    -fx-text-fill: #0B9A7B;
+}
+
+.metric-card .stat-label {
+    -fx-font-size: 11px;
+    -fx-text-fill: #666666;
+}
+
+.fab {
+    -fx-background-color: linear-gradient(to bottom, #12B58A, #0B9A7B);
+    -fx-text-fill: white;
+    -fx-background-radius: 8;
+    -fx-padding: 12 22 12 22;
+    -fx-font-weight: 700;
+}
+
+
+

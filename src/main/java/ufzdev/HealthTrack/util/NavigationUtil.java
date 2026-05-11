@@ -36,7 +36,11 @@ public class NavigationUtil {
 
 
     public static void goToTasks(Stage stage) {
-        renderView(stage, "tasks.fxml", "Gestión de Tareas - ToDo List", 1400, 900);
+        renderView(stage, "tasks.fxml", "Gestión de Tareas - HealthTrack", 1400, 900);
+    }
+
+    public static void goToMain(Stage stage) {
+        renderView(stage, "main-container.fxml", "HealthTrack - Inicio", 1400, 900);
     }
 
     public static void goToReports(Stage stage) {

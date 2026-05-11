@@ -104,7 +104,8 @@ public class LoginController {
             return;
         }
 
-        NavigationUtil.goToTasks(stage);
+        // Navegar al contenedor principal que carga el panel según rol
+        NavigationUtil.goToMain(stage);
     }
 
     @FXML

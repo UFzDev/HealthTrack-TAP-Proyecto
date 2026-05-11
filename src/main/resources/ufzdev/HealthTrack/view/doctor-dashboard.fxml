@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Priority?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.ScrollPane?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="ufzdev.HealthTrack.controllers.DoctorDashboardController" stylesheets="@../css/global.css, @../css/doctor.css" prefWidth="1000" prefHeight="700" style="-fx-background-color: #f6faf8;">
+    <ScrollPane fitToWidth="true" fitToHeight="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED"
+                AnchorPane.topAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.bottomAnchor="0"
+                styleClass="dashboard-scroll">
+        <content>
+            <VBox spacing="0">
+                <VBox spacing="6" style="-fx-padding: 28 32 20 32;">
+                    <Label text="Panel Medico" style="-fx-font-size: 30px; -fx-font-weight: 700; -fx-text-fill: #0B9A7B;" />
+                    <Label text="Monitoreo simultaneo de pacientes, alertas criticas y estado poblacional" style="-fx-font-size: 13px; -fx-text-fill: #768189;" />
+                </VBox>
+
+                <HBox spacing="16" style="-fx-padding: 0 32 18 32;">
+                    <VBox styleClass="summary-card" HBox.hgrow="ALWAYS">
+                        <padding><Insets top="14" right="16" bottom="14" left="16" /></padding>
+                        <Label text="Pacientes activos" styleClass="summary-label" />
+                        <Label fx:id="activePatientsLabel" text="0" styleClass="summary-number" />
+                    </VBox>
+                    <VBox styleClass="summary-card" HBox.hgrow="ALWAYS">
+                        <padding><Insets top="14" right="16" bottom="14" left="16" /></padding>
+                        <Label text="Alertas altas" styleClass="summary-label" />
+                        <Label fx:id="criticalAlertsLabel" text="0" styleClass="summary-number danger-number" />
+                    </VBox>
+                    <VBox styleClass="summary-card" HBox.hgrow="ALWAYS">
+                        <padding><Insets top="14" right="16" bottom="14" left="16" /></padding>
+                        <Label text="Revisiones pendientes" styleClass="summary-label" />
+                        <Label fx:id="pendingReviewLabel" text="0" styleClass="summary-number" />
+                    </VBox>
+                </HBox>
+
+                <VBox spacing="8" style="-fx-padding: 0 32 14 32;">
+                    <Label text="Alertas criticas" style="-fx-font-size: 17px; -fx-font-weight: 700; -fx-text-fill: #0B9A7B;" />
+                    <TableView fx:id="alertsTable" prefHeight="180">
+                        <columns>
+                            <TableColumn fx:id="alertPatientColumn" text="Paciente" prefWidth="220" />
+                            <TableColumn fx:id="alertReadingColumn" text="Ultima lectura" prefWidth="280" />
+                            <TableColumn fx:id="alertRiskColumn" text="Nivel de riesgo" prefWidth="140" />
+                            <TableColumn fx:id="alertTimeColumn" text="Actualizado" prefWidth="160" />
+                        </columns>
+                    </TableView>
+                </VBox>
+
+                <HBox spacing="16" style="-fx-padding: 0 32 28 32;" VBox.vgrow="ALWAYS">
+                    <VBox spacing="10" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
+                        <Label text="Pacientes asignados" style="-fx-font-size: 17px; -fx-font-weight: 700; -fx-text-fill: #0B9A7B;" />
+                        <TableView fx:id="patientsTable" VBox.vgrow="ALWAYS">
+                            <columns>
+                                <TableColumn fx:id="patientNameColumn" text="Nombre" prefWidth="170" />
+                                <TableColumn fx:id="patientConditionColumn" text="Condicion" prefWidth="170" />
+                                <TableColumn fx:id="patientLastMetricColumn" text="Ultima medicion" prefWidth="170" />
+                                <TableColumn fx:id="patientTrendColumn" text="Tendencia" prefWidth="120" />
+                            </columns>
+                        </TableView>
+
+                        <VBox styleClass="chart-card" VBox.vgrow="ALWAYS">
+                            <padding><Insets top="12" right="12" bottom="12" left="12" /></padding>
+                            <LineChart fx:id="doctorTrendChart" title="Evolucion promedio de glucosa" legendVisible="false" VBox.vgrow="ALWAYS">
+                                <xAxis>
+                                    <NumberAxis label="Semana" autoRanging="false" lowerBound="1" upperBound="6" tickUnit="1" />
+                                </xAxis>
+                                <yAxis>
+                                    <NumberAxis label="mg/dL" />
+                                </yAxis>
+                            </LineChart>
+                        </VBox>
+                    </VBox>
+
+                    <VBox spacing="12" prefWidth="290" HBox.hgrow="NEVER">
+                        <VBox styleClass="summary-card" VBox.vgrow="ALWAYS">
+                            <padding><Insets top="12" right="12" bottom="12" left="12" /></padding>
+                            <Label text="Estado clinico" styleClass="summary-label" />
+                            <PieChart fx:id="statusPie" prefHeight="200" labelsVisible="true" />
+                        </VBox>
+
+                        <VBox styleClass="summary-card" VBox.vgrow="ALWAYS">
+                            <padding><Insets top="12" right="12" bottom="12" left="12" /></padding>
+                            <Label text="Recomendaciones del dia" styleClass="summary-label" />
+                            <ListView fx:id="recommendationsList" VBox.vgrow="ALWAYS" />
+                            <Button text="Exportar resumen PDF" styleClass="btn-primary" onAction="#handleExportSummary" />
+                        </VBox>
+                    </VBox>
+                </HBox>
+            </VBox>
+        </content>
+    </ScrollPane>
+</AnchorPane>
+

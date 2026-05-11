@@ -1,0 +1,10 @@
+/* Doctor dashboard specific styles */
+.alert-row {
+    -fx-padding: 8px;
+    -fx-border-color: rgba(255,0,0,0.08);
+}
+
+.patients-table {
+    -fx-pref-width: 600px;
+}
+

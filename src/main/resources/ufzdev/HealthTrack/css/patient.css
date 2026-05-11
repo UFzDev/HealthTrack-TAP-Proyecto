@@ -1,0 +1,44 @@
+/* Patient dashboard specific styles */
+
+.metric-card {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 14;
+    -fx-border-radius: 14;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.06), 8, 0.0, 0, 1);
+    -fx-border-color: #e8eeee;
+    -fx-border-width: 1;
+}
+
+.metric-card .stat-number {
+    -fx-font-size: 30px;
+    -fx-font-weight: 700;
+    -fx-text-fill: #0B9A7B;
+}
+
+.metric-card .stat-label {
+    -fx-font-size: 12px;
+    -fx-text-fill: #7a7a7a;
+    -fx-font-weight: 500;
+}
+
+.chart-card {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 14;
+    -fx-border-radius: 14;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.06), 8, 0.0, 0, 1);
+    -fx-border-color: #e8eeee;
+    -fx-border-width: 1;
+}
+
+.chart-legend {
+    -fx-font-size: 12px;
+}
+
+.chart-card .chart-title {
+    -fx-font-size: 14px;
+    -fx-text-fill: #0B9A7B;
+}
+
+
+
+

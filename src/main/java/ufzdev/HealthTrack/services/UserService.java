@@ -45,7 +45,7 @@ public class UserService {
 
     public static UserModel loginTest() {
         UserModel testUserModel = new UserModel();
-        testUserModel.setUsername("test01");
+        testUserModel.setUsername("test");
         testUserModel.setPassword("123456");
         testUserModel.setName("Usuario de prueba");
         testUserModel.setEmail("test01@healthtrack.local");
