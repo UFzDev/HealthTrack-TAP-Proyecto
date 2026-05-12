@@ -45,11 +45,11 @@ public class UserService {
 
     public static UserModel loginTest() {
         UserModel testUserModel = new UserModel();
-        testUserModel.setUsername("test");
+        testUserModel.setUsername("admin1");
         testUserModel.setPassword("123456");
         testUserModel.setName("Usuario de prueba");
         testUserModel.setEmail("test01@healthtrack.local");
-        testUserModel.setRole(UserRole.PACIENTE);
+        testUserModel.setRole(UserRole.ADMINISTRADOR);
         return testUserModel;
     }
 

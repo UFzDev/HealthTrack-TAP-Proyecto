@@ -27,8 +27,6 @@ public class AdminDashboardController implements Initializable {
     private Label syncStatusValue;
     @FXML
     private Label apiStatusValue;
-    @FXML
-    private ListView<String> activityLogs;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -59,13 +57,6 @@ public class AdminDashboardController implements Initializable {
             System.out.println("Error cargando datos admin: " + e.getMessage());
         }
 
-        activityLogs.setItems(FXCollections.observableArrayList(
-                "09:45 - Se registro nuevo paciente con medico asignado.",
-                "09:30 - Se genero historial clinico en PDF.",
-                "09:15 - Sincronizacion Firebase completada.",
-                "08:58 - API de clima sin respuesta (reintento programado).",
-                "08:40 - Exportacion de metricas a Excel completada."
-        ));
     }
 
     @FXML

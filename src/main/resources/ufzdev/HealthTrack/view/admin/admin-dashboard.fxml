@@ -65,27 +65,21 @@
                 </HBox>
 
                 <HBox spacing="25" VBox.vgrow="ALWAYS">
-                    <!-- Activity Logs -->
-                    <VBox spacing="15" styleClass="metric-card" HBox.hgrow="ALWAYS">
-                        <Label text="Logs de Actividad del Sistema" styleClass="topbar-welcome, admin-subtitle" />
-                        <ListView fx:id="activityLogs" VBox.vgrow="ALWAYS" styleClass="modern-list" />
-                    </VBox>
-
                     <!-- Quick Actions -->
-                    <VBox spacing="20" prefWidth="300" HBox.hgrow="NEVER">
+                    <VBox spacing="20" HBox.hgrow="ALWAYS">
                         <VBox styleClass="metric-card" spacing="15">
-                            <Label text="Acciones Rápidas" styleClass="stat-label" />
-                            <VBox spacing="10">
-                                <Button text="Gestionar Usuarios" styleClass="btn-primary, btn-manage-users" onAction="#handleManageUsers" maxWidth="Infinity" />
-                                <Button text="Exportar Reporte PDF" styleClass="btn-primary" onAction="#handleExportPdf" maxWidth="Infinity" />
-                                <Button text="Exportar Reporte Excel" styleClass="btn-primary, btn-export-excel" onAction="#handleExportExcel" maxWidth="Infinity" />
-                                <Button text="Verificar Sincronización" styleClass="btn-secondary" onAction="#handleCheckSync" maxWidth="Infinity" />
-                            </VBox>
+                            <Label text="Acciones Rápidas de Administración" styleClass="topbar-welcome, admin-subtitle" />
+                            <HBox spacing="15">
+                                <Button text="Gestionar Usuarios" styleClass="btn-primary, btn-manage-users" onAction="#handleManageUsers" HBox.hgrow="ALWAYS" maxWidth="Infinity" />
+                                <Button text="Exportar Reporte PDF" styleClass="btn-primary" onAction="#handleExportPdf" HBox.hgrow="ALWAYS" maxWidth="Infinity" />
+                                <Button text="Exportar Reporte Excel" styleClass="btn-primary, btn-export-excel" onAction="#handleExportExcel" HBox.hgrow="ALWAYS" maxWidth="Infinity" />
+                                <Button text="Verificar Sincronización" styleClass="btn-secondary" onAction="#handleCheckSync" HBox.hgrow="ALWAYS" maxWidth="Infinity" />
+                            </HBox>
                         </VBox>
                         
                         <VBox styleClass="metric-card, maintenance-card" spacing="10">
-                            <Label text="Mantenimiento" styleClass="stat-label" />
-                            <Label text="Próxima ventana de mantenimiento: Domingo 02:00 AM" styleClass="context-text" wrapText="true" />
+                            <Label text="Aviso de Mantenimiento" styleClass="stat-label" />
+                            <Label text="Próxima ventana de mantenimiento programada: Domingo 18 de Mayo, 02:00 AM. Los servicios de sincronización podrían verse interrumpidos brevemente." styleClass="context-text" wrapText="true" />
                         </VBox>
                     </VBox>
                 </HBox>

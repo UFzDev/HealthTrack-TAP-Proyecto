@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Button?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="ufzdev.HealthTrack.controllers.admin.AdminReportsController"
+      stylesheets="@../../css/global.css, @../../css/main.css, @../../css/admin/admin.css"
+      spacing="25" styleClass="admin-management-container">
+
+    <VBox spacing="8">
+        <Label text="Centro de Reportes" styleClass="form-title, admin-title" />
+        <Label text="Generación de informes clínicos, estadísticos y de auditoría del sistema." 
+               styleClass="form-subtitle" />
+    </VBox>
+
+    <HBox spacing="20" alignment="CENTER_LEFT" styleClass="metric-card">
+        <VBox spacing="10" HBox.hgrow="ALWAYS">
+            <Label text="Próximamente" styleClass="stat-label" />
+            <Label text="Módulo de Reportes Avanzados" styleClass="topbar-welcome" />
+            <Label text="Aquí podrás exportar datos consolidados en formatos PDF, Excel y CSV." 
+                   styleClass="context-text" wrapText="true" />
+        </VBox>
+    </HBox>
+
+</VBox>

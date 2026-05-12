@@ -37,6 +37,8 @@ public class MainContainerController implements Initializable {
     @FXML
     private AnchorPane contentArea;
     @FXML
+    private Button btnHome, btnUserMgmt, btnReports, btnSystemStatus, btnProfile, btnSettings;
+    @FXML
     private Button fabRecord;
 
     @Override
@@ -60,6 +62,8 @@ public class MainContainerController implements Initializable {
 
         // Load role-specific content
         UserRole role = currentUser != null ? currentUser.getRole() : null;
+        setupSidebarByRole(role);
+        
         try {
             if (role == UserRole.MEDICO) {
                 loadContent("doctor/doctor-dashboard.fxml");
@@ -74,6 +78,24 @@ public class MainContainerController implements Initializable {
         } catch (Exception e) {
             AlertsUtil.showError("Error de carga", "No se pudo cargar el panel inicial: " + e.getMessage());
         }
+    }
+
+    private void setupSidebarByRole(UserRole role) {
+        // Reset all to visible or hidden as needed
+        boolean isAdmin = (role == UserRole.ADMINISTRADOR);
+        
+        btnUserMgmt.setVisible(isAdmin);
+        btnUserMgmt.setManaged(isAdmin);
+        
+        btnReports.setVisible(isAdmin);
+        btnReports.setManaged(isAdmin);
+        
+        btnSystemStatus.setVisible(isAdmin);
+        btnSystemStatus.setManaged(isAdmin);
+        
+        // Profile is mostly for patients/doctors
+        btnProfile.setVisible(role != UserRole.ADMINISTRADOR);
+        btnProfile.setManaged(role != UserRole.ADMINISTRADOR);
     }
 
     private void loadContent(String fxml) throws IOException {
@@ -91,6 +113,7 @@ public class MainContainerController implements Initializable {
     private void openHome() {
         // reload main content
         initialize(null, null);
+        updateActiveButton(btnHome);
     }
 
     @FXML
@@ -99,13 +122,61 @@ public class MainContainerController implements Initializable {
         try {
             loadContent("patient/patient-dashboard.fxml");
             fabRecord.setVisible(true);
+            updateActiveButton(btnProfile);
         } catch (IOException e) {
             AlertsUtil.showError("Error", "No se pudo abrir Perfil.");
         }
     }
 
     @FXML
+    private void openUserManagement() {
+        try {
+            loadContent("admin/admin-user-management.fxml");
+            updateActiveButton(btnUserMgmt);
+        } catch (IOException e) {
+            AlertsUtil.showError("Error", "No se pudo abrir Gestión de Usuarios.");
+        }
+    }
+
+    @FXML
+    private void openReports() {
+        try {
+            loadContent("admin/admin-reports.fxml");
+            updateActiveButton(btnReports);
+        } catch (IOException e) {
+            AlertsUtil.showError("Error", "No se pudo abrir Reportes.");
+        }
+    }
+
+    @FXML
+    private void openSystemStatus() {
+        try {
+            loadContent("admin/admin-system-status.fxml");
+            updateActiveButton(btnSystemStatus);
+        } catch (IOException e) {
+            AlertsUtil.showError("Error", "No se pudo abrir Estado del Sistema.");
+        }
+    }
+
+    @FXML
     private void openSettings() {
+        // NavigationUtil.goToSettings();
+        updateActiveButton(btnSettings);
+    }
+
+    private void updateActiveButton(Button activeBtn) {
+        // Clear active class from all
+        btnHome.getStyleClass().remove("nav-active");
+        btnUserMgmt.getStyleClass().remove("nav-active");
+        btnReports.getStyleClass().remove("nav-active");
+        btnSystemStatus.getStyleClass().remove("nav-active");
+        btnProfile.getStyleClass().remove("nav-active");
+        btnSettings.getStyleClass().remove("nav-active");
+        
+        // Add to active
+        if (!activeBtn.getStyleClass().contains("nav-active")) {
+            activeBtn.getStyleClass().add("nav-active");
+        }
     }
 
     @FXML

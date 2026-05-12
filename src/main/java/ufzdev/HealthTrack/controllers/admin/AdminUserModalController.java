@@ -15,6 +15,7 @@ import ufzdev.HealthTrack.util.AlertsUtil;
 import ufzdev.HealthTrack.util.TaskExecutorUtil;
 import ufzdev.HealthTrack.util.ValidationException;
 import ufzdev.HealthTrack.validators.UserValidator;
+import ufzdev.HealthTrack.services.LogService;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -76,6 +77,7 @@ public class AdminUserModalController implements Initializable {
                 },
                 res -> {
                     AlertsUtil.showSuccess("Éxito", "Usuario " + selectedRole + " creado correctamente.");
+                    LogService.log("Creación de Usuario", "Se ha creado el usuario " + newUser.getUsername() + " con rol " + selectedRole);
                     closeModal();
                 },
                 err -> {

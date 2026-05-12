@@ -27,7 +27,14 @@
         <Separator styleClass="sidebar-divider"/>
 
         <VBox spacing="8.0" VBox.vgrow="ALWAYS">
-            <Button text="Panel de Control" fx:id="btnHome" onAction="#openHome" styleClass="nav-button, nav-active" maxWidth="Infinity" />
+            <Button text="Dashboard" fx:id="btnHome" onAction="#openHome" styleClass="nav-button, nav-active" maxWidth="Infinity" />
+            
+            <!-- Admin Specific -->
+            <Button text="Gestión de Usuarios" fx:id="btnUserMgmt" onAction="#openUserManagement" styleClass="nav-button" maxWidth="Infinity" />
+            <Button text="Reportes" fx:id="btnReports" onAction="#openReports" styleClass="nav-button" maxWidth="Infinity" />
+            <Button text="Estado del Sistema" fx:id="btnSystemStatus" onAction="#openSystemStatus" styleClass="nav-button" maxWidth="Infinity" />
+            
+            <!-- Common / Patient -->
             <Button text="Mi Perfil" fx:id="btnProfile" onAction="#openProfile" styleClass="nav-button" maxWidth="Infinity" />
             <Button text="Configuración" fx:id="btnSettings" onAction="#openSettings" styleClass="nav-button" maxWidth="Infinity" />
         </VBox>

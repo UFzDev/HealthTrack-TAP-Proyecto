@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="ufzdev.HealthTrack.controllers.admin.AdminSystemStatusController"
+      stylesheets="@../../css/global.css, @../../css/main.css, @../../css/admin/admin.css"
+      spacing="25" styleClass="admin-management-container">
+
+    <VBox spacing="8">
+        <Label text="Estado de la Aplicación" styleClass="form-title, admin-title" />
+        <Label text="Monitoreo en tiempo real de servicios, bases de datos y conectividad." 
+               styleClass="form-subtitle" />
+    </VBox>
+
+    <GridPane hgap="20" vgap="20">
+        <VBox styleClass="metric-card" GridPane.columnIndex="0" GridPane.rowIndex="0" HBox.hgrow="ALWAYS">
+            <Label text="Firebase Firestore" styleClass="stat-label" />
+            <Label text="Operativo" styleClass="status-pill status-ok" maxWidth="100" />
+        </VBox>
+        <VBox styleClass="metric-card" GridPane.columnIndex="1" GridPane.rowIndex="0" HBox.hgrow="ALWAYS">
+            <Label text="Servicio de Autenticación" styleClass="stat-label" />
+            <Label text="Operativo" styleClass="status-pill status-ok" maxWidth="100" />
+        </VBox>
+        <VBox styleClass="metric-card" GridPane.columnIndex="2" GridPane.rowIndex="0" HBox.hgrow="ALWAYS">
+            <Label text="API de Notificaciones" styleClass="stat-label" />
+            <Label text="Latencia Alta" styleClass="status-pill status-warning" maxWidth="100" />
+        </VBox>
+    </GridPane>
+
+    <VBox spacing="15" VBox.vgrow="ALWAYS" styleClass="metric-card">
+        <Label text="Logs de Actividad Recientes" styleClass="topbar-welcome" />
+        <TableView fx:id="logsTable" VBox.vgrow="ALWAYS" styleClass="modern-table">
+            <columns>
+                <TableColumn fx:id="timestampColumn" text="Fecha/Hora" prefWidth="180" />
+                <TableColumn fx:id="userColumn" text="Usuario" prefWidth="120" />
+                <TableColumn fx:id="actionColumn" text="Acción" prefWidth="200" />
+                <TableColumn fx:id="detailsColumn" text="Detalles" prefWidth="350" />
+            </columns>
+            <columnResizePolicy>
+                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+            </columnResizePolicy>
+        </TableView>
+    </VBox>
+
+</VBox>

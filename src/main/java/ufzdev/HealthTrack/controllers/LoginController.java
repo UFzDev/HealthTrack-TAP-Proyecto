@@ -15,6 +15,7 @@ import ufzdev.HealthTrack.util.AlertsUtil;
 import ufzdev.HealthTrack.util.NavigationUtil;
 import ufzdev.HealthTrack.util.TaskExecutorUtil;
 import ufzdev.HealthTrack.util.UserSessionUtil;
+import ufzdev.HealthTrack.services.LogService;
 
 public class LoginController {
     @FXML
@@ -51,6 +52,7 @@ public class LoginController {
                     }
                     AlertsUtil.showSuccess("Login Exitoso",
                             "Bienvenido, " + userModelAuthenticated.getUsername() + "!");
+                    LogService.log("Inicio de Sesión", "El usuario " + userModelAuthenticated.getUsername() + " ha accedido al sistema.");
                     System.out.println("Login exitoso para el usuario: " + userModelAuthenticated.getUsername());
                     btnLogin.setDisable(false);
 
@@ -83,6 +85,7 @@ public class LoginController {
                         return;
                     }
                     AlertsUtil.showSuccess("Inicio de sesión de prueba exitoso", "Se ha autenticado correctamente con el usuario de prueba.");
+                    LogService.log("Inicio de Sesión (Test)", "Se ha utilizado la cuenta de prueba para acceder.");
                     System.out.println("Login exitoso con el usuario de prueba.");
                     btnTest.setDisable(false);
 
