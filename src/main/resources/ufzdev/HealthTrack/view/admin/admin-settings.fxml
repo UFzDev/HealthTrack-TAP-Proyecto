@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="ufzdev.HealthTrack.controllers.admin.AdminSettingsController"
+      stylesheets="@../../css/global.css, @../../css/main.css, @../../css/admin/admin.css"
+      spacing="35" styleClass="admin-management-container">
+
+    <padding>
+        <Insets top="40" right="60" bottom="40" left="60"/>
+    </padding>
+
+    <!-- Header Section -->
+    <VBox spacing="10">
+        <Label text="Configuración de Inteligencia Artificial" styleClass="form-title, admin-title" />
+        <Label text="Selecciona un proveedor y configura tu API Key para habilitar el análisis inteligente de salud." 
+               styleClass="form-subtitle" />
+    </VBox>
+
+    <VBox spacing="30" VBox.vgrow="ALWAYS">
+        <!-- AI Configuration Row -->
+        <HBox spacing="40" alignment="CENTER_LEFT">
+            <VBox spacing="10" HBox.hgrow="ALWAYS">
+                <Label text="Proveedor de IA" styleClass="context-text" />
+                <ComboBox fx:id="aiProviderSelector" maxWidth="Infinity" prefHeight="45.0" />
+            </VBox>
+            
+            <VBox spacing="10" HBox.hgrow="ALWAYS" prefWidth="400">
+                <Label text="API Key de Acceso" styleClass="context-text" />
+                <PasswordField fx:id="aiApiKeyField" promptText="Pega aquí tu clave secreta" prefHeight="45.0" />
+            </VBox>
+        </HBox>
+
+        <Region VBox.vgrow="ALWAYS" />
+
+        <!-- Actions -->
+        <HBox alignment="CENTER_RIGHT" spacing="20">
+            <Button fx:id="btnSave" text="Guardar Configuración" styleClass="btn-primary" 
+                    onAction="#handleSave" prefWidth="240" prefHeight="50.0" />
+        </HBox>
+    </VBox>
+
+</VBox>

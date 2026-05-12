@@ -48,7 +48,7 @@ public class MainContainerController implements Initializable {
             String userName = currentUser.getName() != null && !currentUser.getName().isBlank()
                     ? currentUser.getName()
                     : currentUser.getUsername();
-            welcomeLabel.setText("Bienvenido, " + userName);
+            welcomeLabel.setText(userName);
 
             String roleLabel = currentUser.getRole() != null
                     ? "• " + getRoleLabel(currentUser.getRole())
@@ -160,8 +160,18 @@ public class MainContainerController implements Initializable {
 
     @FXML
     private void openSettings() {
-        // NavigationUtil.goToSettings();
-        updateActiveButton(btnSettings);
+        try {
+            UserModel currentUser = UserSessionUtil.getInstance().getUser();
+            if (currentUser != null && currentUser.getRole() == UserRole.ADMINISTRADOR) {
+                loadContent("admin/admin-settings.fxml");
+            } else {
+                // Vista de configuración para usuarios normales (perfil)
+                loadContent("patient/patient-dashboard.fxml"); 
+            }
+            updateActiveButton(btnSettings);
+        } catch (IOException e) {
+            AlertsUtil.showError("Error", "No se pudo abrir Configuración.");
+        }
     }
 
     private void updateActiveButton(Button activeBtn) {
