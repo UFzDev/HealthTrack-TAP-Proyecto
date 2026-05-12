@@ -7,37 +7,49 @@
 <VBox xmlns:fx="http://javafx.com/fxml"
       fx:controller="ufzdev.HealthTrack.controllers.admin.AdminSettingsController"
       stylesheets="@../../css/global.css, @../../css/main.css, @../../css/admin/admin.css"
-      spacing="35" styleClass="admin-management-container">
+      spacing="30" styleClass="admin-management-container">
 
     <padding>
         <Insets top="40" right="60" bottom="40" left="60"/>
     </padding>
 
-    <!-- Header Section -->
     <VBox spacing="10">
         <Label text="Configuración de Inteligencia Artificial" styleClass="form-title, admin-title" />
-        <Label text="Selecciona un proveedor y configura tu API Key para habilitar el análisis inteligente de salud." 
+        <Label text="Configura la conexión con tu proveedor de IA (Groq, OpenAI, etc.) para habilitar el análisis de salud." 
                styleClass="form-subtitle" />
     </VBox>
 
-    <VBox spacing="30" VBox.vgrow="ALWAYS">
-        <!-- AI Configuration Row -->
-        <HBox spacing="40" alignment="CENTER_LEFT">
-            <VBox spacing="10" HBox.hgrow="ALWAYS">
-                <Label text="Proveedor de IA" styleClass="context-text" />
-                <ComboBox fx:id="aiProviderSelector" maxWidth="Infinity" prefHeight="45.0" />
+    <VBox spacing="25" VBox.vgrow="ALWAYS">
+        <GridPane hgap="25" vgap="20">
+            <columnConstraints>
+                <ColumnConstraints percentWidth="30" />
+                <ColumnConstraints percentWidth="70" />
+            </columnConstraints>
+
+            <!-- Row 0: Provider & Base URL -->
+            <VBox spacing="8" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                <Label text="Proveedor" styleClass="context-text" />
+                <ComboBox fx:id="aiProviderSelector" maxWidth="Infinity" prefHeight="40.0" />
             </VBox>
             
-            <VBox spacing="10" HBox.hgrow="ALWAYS" prefWidth="400">
-                <Label text="API Key de Acceso" styleClass="context-text" />
-                <PasswordField fx:id="aiApiKeyField" promptText="Pega aquí tu clave secreta" prefHeight="45.0" />
+            <VBox spacing="8" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                <Label text="Base URL (API Endpoint)" styleClass="context-text" />
+                <TextField fx:id="aiBaseUrlField" promptText="https://api.groq.com/openai/v1/chat/completions" prefHeight="40.0" />
             </VBox>
-        </HBox>
+
+            <!-- Row 1: API Key (Full width) -->
+            <VBox spacing="8" GridPane.columnIndex="0" GridPane.rowIndex="1" GridPane.columnSpan="2">
+                <Label text="API Key de Acceso" styleClass="context-text" />
+                <PasswordField fx:id="aiApiKeyField" promptText="Pega aquí tu clave secreta de Groq" prefHeight="40.0" />
+            </VBox>
+        </GridPane>
 
         <Region VBox.vgrow="ALWAYS" />
 
         <!-- Actions -->
         <HBox alignment="CENTER_RIGHT" spacing="20">
+            <Button text="Probar Conexión" styleClass="btn-secondary" 
+                    onAction="#handleTestConnection" prefWidth="180" prefHeight="50.0" />
             <Button fx:id="btnSave" text="Guardar Configuración" styleClass="btn-primary" 
                     onAction="#handleSave" prefWidth="240" prefHeight="50.0" />
         </HBox>

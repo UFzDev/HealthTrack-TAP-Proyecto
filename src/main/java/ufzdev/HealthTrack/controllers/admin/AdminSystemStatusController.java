@@ -11,7 +11,6 @@ import ufzdev.HealthTrack.services.LogService;
 import ufzdev.HealthTrack.util.TaskExecutorUtil;
 
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class AdminSystemStatusController implements Initializable {

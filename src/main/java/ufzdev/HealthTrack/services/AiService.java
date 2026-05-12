@@ -35,15 +35,34 @@ public class AiService {
         return CompletableFuture.supplyAsync(() -> {
             try {
                 SystemConfigModel config = configDao.get();
-                String apiKey = config.getAiApiKey();
+                return askAiWithKeyAndUrl(systemPrompt, userPrompt, config.getAiApiKey(), config.getAiBaseUrl()).get();
+            } catch (Exception e) {
+                throw new RuntimeException(e.getMessage());
+            }
+        });
+    }
 
+    public CompletableFuture<String> askAiWithKey(String systemPrompt, String userPrompt, String apiKey) {
+        try {
+            SystemConfigModel config = configDao.get();
+            return askAiWithKeyAndUrl(systemPrompt, userPrompt, apiKey, config.getAiBaseUrl());
+        } catch (Exception e) {
+            throw new RuntimeException(e.getMessage());
+        }
+    }
+
+    public CompletableFuture<String> askAiWithKeyAndUrl(String systemPrompt, String userPrompt, String apiKey, String baseUrl) {
+        return CompletableFuture.supplyAsync(() -> {
+            try {
                 if (apiKey == null || apiKey.isEmpty()) {
-                    throw new Exception("API Key no configurada. Por favor, ve a Configuración.");
+                    throw new Exception("API Key no proporcionada.");
                 }
+                
+                String finalUrl = (baseUrl == null || baseUrl.isEmpty()) ? OPENAI_URL : baseUrl;
 
                 // Construir el cuerpo de la petición para OpenAI
                 JsonObject requestBody = new JsonObject();
-                requestBody.addProperty("model", "gpt-3.5-turbo"); // O gpt-4 si se prefiere
+                requestBody.addProperty("model", "openai/gpt-oss-120b");
                 
                 JsonArray messages = new JsonArray();
                 
@@ -61,7 +80,7 @@ public class AiService {
                 requestBody.addProperty("temperature", 0.7);
 
                 HttpRequest request = HttpRequest.newBuilder()
-                        .uri(URI.create(OPENAI_URL))
+                        .uri(URI.create(finalUrl))
                         .header("Content-Type", "application/json")
                         .header("Authorization", "Bearer " + apiKey)
                         .POST(HttpRequest.BodyPublishers.ofString(gson.toJson(requestBody)))
@@ -73,7 +92,6 @@ public class AiService {
                     throw new Exception("Error de OpenAI (Status " + response.statusCode() + "): " + response.body());
                 }
 
-                // Parsear respuesta
                 JsonObject jsonResponse = gson.fromJson(response.body(), JsonObject.class);
                 return jsonResponse.getAsJsonArray("choices")
                         .get(0).getAsJsonObject()

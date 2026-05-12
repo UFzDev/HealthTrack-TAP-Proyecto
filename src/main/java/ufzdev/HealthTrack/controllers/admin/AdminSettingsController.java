@@ -13,6 +13,7 @@ import ufzdev.HealthTrack.services.LogService;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import ufzdev.HealthTrack.services.AiService;
 
 public class AdminSettingsController implements Initializable {
 
@@ -21,14 +22,18 @@ public class AdminSettingsController implements Initializable {
     @FXML
     private PasswordField aiApiKeyField;
     @FXML
+    private TextField aiBaseUrlField;
+    @FXML
     private Button btnSave;
 
     private SystemConfigDao configDao;
     private SystemConfigModel currentConfig;
+    private AiService aiService;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         configDao = new SystemConfigFirestoreDao();
+        aiService = new AiService();
         aiProviderSelector.setItems(FXCollections.observableArrayList("Gemini", "OpenAI", "Claude", "Local LLM"));
         loadConfig();
     }
@@ -39,6 +44,7 @@ public class AdminSettingsController implements Initializable {
             config -> {
                 this.currentConfig = config;
                 aiProviderSelector.setValue(config.getAiProvider());
+                aiBaseUrlField.setText(config.getAiBaseUrl());
                 aiApiKeyField.setText(config.getAiApiKey());
             },
             error -> AlertsUtil.showError("Error", "No se pudo cargar la configuración: " + error.getMessage())
@@ -50,6 +56,7 @@ public class AdminSettingsController implements Initializable {
         if (currentConfig == null) return;
 
         currentConfig.setAiProvider(aiProviderSelector.getValue());
+        currentConfig.setAiBaseUrl(aiBaseUrlField.getText());
         currentConfig.setAiApiKey(aiApiKeyField.getText());
 
         btnSave.setDisable(true);
@@ -68,5 +75,29 @@ public class AdminSettingsController implements Initializable {
                 btnSave.setDisable(false);
             }
         );
+    }
+
+    @FXML
+    private void handleTestConnection() {
+        String testKey = aiApiKeyField.getText();
+        String testUrl = aiBaseUrlField.getText();
+
+        if (testKey == null || testKey.trim().isEmpty()) {
+            AlertsUtil.showError("Prueba de Conexión", "Por favor ingresa una API Key para probar.");
+            return;
+        }
+
+        aiService.askAiWithKeyAndUrl("Hola", "Prueba de conexión", testKey, testUrl)
+            .thenAccept(response -> {
+                javafx.application.Platform.runLater(() -> 
+                    AlertsUtil.showSuccess("Conexión Exitosa", "La API respondió correctamente: " + response)
+                );
+            })
+            .exceptionally(ex -> {
+                javafx.application.Platform.runLater(() -> 
+                    AlertsUtil.showError("Error de Conexión", "Detalle: " + (ex.getCause() != null ? ex.getCause().getMessage() : ex.getMessage()))
+                );
+                return null;
+            });
     }
 }
