@@ -266,3 +266,79 @@
     -fx-text-fill: #b42318;
 }
 
+/* ============================================
+    MODERN TABLE & LIST STYLES
+    ============================================ */
+
+.modern-table {
+    -fx-background-color: transparent;
+    -fx-border-color: #e2e8f0;
+    -fx-border-radius: 12;
+    -fx-background-radius: 12;
+    -fx-padding: 0;
+}
+
+.modern-table .column-header-background {
+    -fx-background-color: #f8fafc;
+    -fx-background-radius: 12 12 0 0;
+    -fx-padding: 10;
+}
+
+.modern-table .column-header {
+    -fx-background-color: transparent;
+    -fx-size: 40;
+}
+
+.modern-table .column-header .label {
+    -fx-text-fill: #64748b;
+    -fx-font-weight: 700;
+    -fx-font-size: 13px;
+    -fx-alignment: center-left;
+}
+
+.modern-table .table-row-cell {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #f1f5f9;
+    -fx-border-width: 0 0 1 0;
+    -fx-cell-size: 50;
+}
+
+.modern-table .table-row-cell:odd {
+    -fx-background-color: #fafbfd;
+}
+
+.modern-table .table-row-cell:hover {
+    -fx-background-color: #f1f5f9;
+}
+
+.modern-table .table-cell {
+    -fx-text-fill: #1e293b;
+    -fx-font-size: 13px;
+    -fx-alignment: center-left;
+    -fx-padding: 0 15 0 15;
+}
+
+.modern-list {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.modern-list .list-cell {
+    -fx-background-color: #ffffff;
+    -fx-padding: 12 15;
+    -fx-border-color: #f1f5f9;
+    -fx-border-width: 0 0 1 0;
+    -fx-text-fill: #334155;
+    -fx-font-size: 13px;
+}
+
+.modern-list .list-cell:hover {
+    -fx-background-color: #f8fafc;
+}
+
+.modern-list .list-cell:selected {
+    -fx-background-color: rgba(18, 181, 138, 0.1);
+    -fx-text-fill: #0B9A7B;
+    -fx-font-weight: 600;
+}
+

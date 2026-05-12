@@ -18,73 +18,75 @@
 
 <AnchorPane xmlns:fx="http://javafx.com/fxml"
             fx:controller="ufzdev.HealthTrack.controllers.PatientDashboardController"
-            stylesheets="@../css/global.css, @../css/patient.css"
+            stylesheets="@../css/global.css, @../css/main.css, @../css/patient.css"
             prefWidth="1000" prefHeight="700"
-            style="-fx-background-color: #f6faf8;">
+            style="-fx-background-color: #f8fafc;">
 
     <ScrollPane fitToWidth="true" fitToHeight="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED"
                 AnchorPane.topAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.bottomAnchor="0"
                 styleClass="dashboard-scroll">
         <content>
-            <VBox spacing="0">
-
-                <VBox spacing="6" style="-fx-padding: 28 32 22 32;">
-                    <Label text="Mis Mediciones" style="-fx-font-size: 30px; -fx-font-weight: 700; -fx-text-fill: #0B9A7B;" />
-                    <Label text="Registra métricas con fecha automática, revisa tendencias y alertas de riesgo" style="-fx-font-size: 13px; -fx-text-fill: #768189;" />
+            <VBox spacing="30" style="-fx-padding: 35 40 40 40;">
+                
+                <!-- Header Section -->
+                <VBox spacing="8">
+                    <Label text="Resumen de Salud" styleClass="form-title" style="-fx-font-size: 28px;" />
+                    <Label text="Monitorea tus signos vitales y visualiza tendencias históricas para prevenir riesgos." 
+                           styleClass="form-subtitle" />
                 </VBox>
 
-                <HBox spacing="16" style="-fx-padding: 0 32 18 32;">
-                    <VBox styleClass="metric-card" HBox.hgrow="ALWAYS">
-                        <padding><Insets top="18" right="18" bottom="18" left="18" /></padding>
-                        <spacing>8</spacing>
-                        <Label text="Presión arterial" styleClass="stat-label" />
-                        <Label fx:id="bpValue" styleClass="stat-number" />
+                <!-- Metrics Grid -->
+                <GridPane hgap="20" vgap="20">
+                    <VBox styleClass="metric-card" GridPane.columnIndex="0" GridPane.rowIndex="0" HBox.hgrow="ALWAYS">
+                        <Label text="Presión Arterial" styleClass="stat-label" />
+                        <Label fx:id="bpValue" text="120/80" styleClass="stat-number" />
+                        <Label text="mmHg" styleClass="context-text" />
                     </VBox>
 
-                    <VBox styleClass="metric-card" HBox.hgrow="ALWAYS">
-                        <padding><Insets top="18" right="18" bottom="18" left="18" /></padding>
-                        <spacing>8</spacing>
+                    <VBox styleClass="metric-card" GridPane.columnIndex="1" GridPane.rowIndex="0" HBox.hgrow="ALWAYS">
                         <Label text="Glucosa" styleClass="stat-label" />
-                        <Label fx:id="glucoseValue" styleClass="stat-number" />
+                        <Label fx:id="glucoseValue" text="95" styleClass="stat-number" />
+                        <Label text="mg/dL" styleClass="context-text" />
                     </VBox>
 
-                    <VBox styleClass="metric-card" HBox.hgrow="ALWAYS">
-                        <padding><Insets top="18" right="18" bottom="18" left="18" /></padding>
-                        <spacing>8</spacing>
+                    <VBox styleClass="metric-card" GridPane.columnIndex="2" GridPane.rowIndex="0" HBox.hgrow="ALWAYS">
                         <Label text="IMC" styleClass="stat-label" />
-                        <Label fx:id="imcValue" styleClass="stat-number" />
+                        <Label fx:id="imcValue" text="24.5" styleClass="stat-number" />
+                        <Label text="Peso Saludable" styleClass="status-pill status-ok" />
                     </VBox>
 
-                    <VBox styleClass="metric-card" HBox.hgrow="ALWAYS">
-                        <padding><Insets top="18" right="18" bottom="18" left="18" /></padding>
-                        <spacing>8</spacing>
-                        <Label text="Frecuencia cardiaca" styleClass="stat-label" />
-                        <Label fx:id="heartRateValue" styleClass="stat-number" />
+                    <VBox styleClass="metric-card" GridPane.columnIndex="3" GridPane.rowIndex="0" HBox.hgrow="ALWAYS">
+                        <Label text="Frecuencia" styleClass="stat-label" />
+                        <Label fx:id="heartRateValue" text="72" styleClass="stat-number" />
+                        <Label text="BPM" styleClass="context-text" />
+                    </VBox>
+                </GridPane>
+
+                <!-- Status Alerts -->
+                <HBox spacing="15" alignment="CENTER_LEFT" styleClass="metric-card" style="-fx-padding: 15 25; -fx-background-color: #f1f5f9; -fx-border-color: #e2e8f0;">
+                    <VBox spacing="4" HBox.hgrow="ALWAYS">
+                        <Label fx:id="lastRecordLabel" text="Última actualización: Hoy, hace 2 horas" styleClass="context-text" style="-fx-font-weight: 600;" />
+                        <Label fx:id="trendStatusLabel" text="Tus niveles se mantienen estables dentro del rango normal." styleClass="alert-ok" />
                     </VBox>
                 </HBox>
 
-                <VBox spacing="8" style="-fx-padding: 0 32 18 32;">
-                    <Label fx:id="lastRecordLabel" text="Último registro: --" styleClass="context-text" />
-                    <Label fx:id="trendStatusLabel" text="Sin alertas críticas en este momento" styleClass="alert-ok" />
-                </VBox>
-
-                <!-- Registro de medición movido al modal (quick-record-modal.fxml) -->
-
-                <VBox spacing="14" style="-fx-padding: 0 32 28 32;" VBox.vgrow="ALWAYS">
-                    <HBox alignment="CENTER_LEFT" spacing="10">
-                        <VBox spacing="4" HBox.hgrow="ALWAYS">
-                            <Label text="Visualización avanzada" style="-fx-font-size: 17px; -fx-font-weight: 700; -fx-text-fill: #0B9A7B;" />
-                            <Label text="Gráficos de evolución, promedios y tendencias" style="-fx-font-size: 13px; -fx-text-fill: #768189;" />
+                <!-- Charts Section -->
+                <VBox spacing="20" VBox.vgrow="ALWAYS">
+                    <HBox alignment="CENTER_LEFT">
+                        <VBox spacing="5" HBox.hgrow="ALWAYS">
+                            <Label text="Evolución Histórica" styleClass="topbar-welcome" style="-fx-font-size: 20px;" />
+                            <Label text="Seguimiento de glucosa y métricas generales" styleClass="form-subtitle" />
                         </VBox>
-                        <ComboBox fx:id="periodSelector" prefWidth="160" onAction="#handlePeriodChange" />
+                        <ComboBox fx:id="periodSelector" prefWidth="180" styleClass="input-field" onAction="#handlePeriodChange" />
                     </HBox>
 
-                    <HBox spacing="16" VBox.vgrow="ALWAYS">
-                        <VBox styleClass="chart-card" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
-                            <padding><Insets top="18" right="18" bottom="18" left="18" /></padding>
-                            <LineChart fx:id="trendChart" title="Tendencia de glucosa" VBox.vgrow="ALWAYS" legendVisible="false" createSymbols="true">
+                    <HBox spacing="25" VBox.vgrow="ALWAYS">
+                        <VBox styleClass="chart-card" HBox.hgrow="ALWAYS" spacing="15">
+                            <padding><Insets top="20" right="20" bottom="20" left="20" /></padding>
+                            <Label text="Tendencia de Glucosa" styleClass="stat-label" />
+                            <LineChart fx:id="trendChart" legendVisible="false" createSymbols="true" VBox.vgrow="ALWAYS">
                                 <xAxis>
-                                    <NumberAxis label="Día" autoRanging="false" lowerBound="1" upperBound="7" tickUnit="1" />
+                                    <NumberAxis label="Día del Periodo" autoRanging="false" lowerBound="1" upperBound="7" tickUnit="1" />
                                 </xAxis>
                                 <yAxis>
                                     <NumberAxis label="mg/dL" />
@@ -92,14 +94,15 @@
                             </LineChart>
                         </VBox>
 
-                        <VBox styleClass="chart-card" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
-                            <padding><Insets top="18" right="18" bottom="18" left="18" /></padding>
-                            <BarChart fx:id="averagesChart" title="Promedio semanal" VBox.vgrow="ALWAYS" legendVisible="false">
+                        <VBox styleClass="chart-card" HBox.hgrow="ALWAYS" spacing="15">
+                            <padding><Insets top="20" right="20" bottom="20" left="20" /></padding>
+                            <Label text="Distribución de Métricas" styleClass="stat-label" />
+                            <BarChart fx:id="averagesChart" legendVisible="false" VBox.vgrow="ALWAYS">
                                 <xAxis>
-                                    <CategoryAxis label="Métrica" />
+                                    <CategoryAxis label="Métricas" />
                                 </xAxis>
                                 <yAxis>
-                                    <NumberAxis label="Valor" />
+                                    <NumberAxis label="Valor Promedio" />
                                 </yAxis>
                             </BarChart>
                         </VBox>
@@ -108,7 +111,6 @@
             </VBox>
         </content>
     </ScrollPane>
-
 </AnchorPane>
 
 

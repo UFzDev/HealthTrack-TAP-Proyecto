@@ -15,62 +15,73 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.control.ScrollPane?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="ufzdev.HealthTrack.controllers.DoctorDashboardController" stylesheets="@../css/global.css, @../css/doctor.css" prefWidth="1000" prefHeight="700" style="-fx-background-color: #f6faf8;">
+<AnchorPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="ufzdev.HealthTrack.controllers.DoctorDashboardController"
+            stylesheets="@../css/global.css, @../css/main.css, @../css/doctor.css"
+            prefWidth="1000" prefHeight="700"
+            style="-fx-background-color: #f8fafc;">
+
     <ScrollPane fitToWidth="true" fitToHeight="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED"
                 AnchorPane.topAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.bottomAnchor="0"
                 styleClass="dashboard-scroll">
         <content>
-            <VBox spacing="0">
-                <VBox spacing="6" style="-fx-padding: 28 32 20 32;">
-                    <Label text="Panel Medico" style="-fx-font-size: 30px; -fx-font-weight: 700; -fx-text-fill: #0B9A7B;" />
-                    <Label text="Monitoreo simultaneo de pacientes, alertas criticas y estado poblacional" style="-fx-font-size: 13px; -fx-text-fill: #768189;" />
+            <VBox spacing="30" style="-fx-padding: 35 40 40 40;">
+                
+                <!-- Header Section -->
+                <VBox spacing="8">
+                    <Label text="Panel Médico" styleClass="form-title" style="-fx-font-size: 28px;" />
+                    <Label text="Monitoreo poblacional, alertas críticas y seguimiento clínico de pacientes asignados." 
+                           styleClass="form-subtitle" />
                 </VBox>
 
-                <HBox spacing="16" style="-fx-padding: 0 32 18 32;">
-                    <VBox styleClass="summary-card" HBox.hgrow="ALWAYS">
-                        <padding><Insets top="14" right="16" bottom="14" left="16" /></padding>
-                        <Label text="Pacientes activos" styleClass="summary-label" />
-                        <Label fx:id="activePatientsLabel" text="0" styleClass="summary-number" />
+                <!-- Summary Metrics -->
+                <HBox spacing="20">
+                    <VBox styleClass="metric-card" HBox.hgrow="ALWAYS">
+                        <Label text="Pacientes Activos" styleClass="stat-label" />
+                        <Label fx:id="activePatientsLabel" text="42" styleClass="stat-number" />
                     </VBox>
-                    <VBox styleClass="summary-card" HBox.hgrow="ALWAYS">
-                        <padding><Insets top="14" right="16" bottom="14" left="16" /></padding>
-                        <Label text="Alertas altas" styleClass="summary-label" />
-                        <Label fx:id="criticalAlertsLabel" text="0" styleClass="summary-number danger-number" />
+                    <VBox styleClass="metric-card" HBox.hgrow="ALWAYS" style="-fx-border-color: #fee2e2;">
+                        <Label text="Alertas Críticas" styleClass="stat-label" style="-fx-text-fill: #b91c1c;" />
+                        <Label fx:id="criticalAlertsLabel" text="5" styleClass="stat-number danger-number" />
                     </VBox>
-                    <VBox styleClass="summary-card" HBox.hgrow="ALWAYS">
-                        <padding><Insets top="14" right="16" bottom="14" left="16" /></padding>
-                        <Label text="Revisiones pendientes" styleClass="summary-label" />
-                        <Label fx:id="pendingReviewLabel" text="0" styleClass="summary-number" />
+                    <VBox styleClass="metric-card" HBox.hgrow="ALWAYS">
+                        <Label text="Revisiones Hoy" styleClass="stat-label" />
+                        <Label fx:id="pendingReviewLabel" text="12" styleClass="stat-number" />
                     </VBox>
                 </HBox>
 
-                <VBox spacing="8" style="-fx-padding: 0 32 14 32;">
-                    <Label text="Alertas criticas" style="-fx-font-size: 17px; -fx-font-weight: 700; -fx-text-fill: #0B9A7B;" />
-                    <TableView fx:id="alertsTable" prefHeight="180">
+                <!-- Critical Alerts Table -->
+                <VBox spacing="15" styleClass="metric-card">
+                    <Label text="Alertas Prioritarias" styleClass="topbar-welcome" style="-fx-font-size: 18px;" />
+                    <TableView fx:id="alertsTable" prefHeight="180" styleClass="modern-table">
                         <columns>
                             <TableColumn fx:id="alertPatientColumn" text="Paciente" prefWidth="220" />
-                            <TableColumn fx:id="alertReadingColumn" text="Ultima lectura" prefWidth="280" />
-                            <TableColumn fx:id="alertRiskColumn" text="Nivel de riesgo" prefWidth="140" />
-                            <TableColumn fx:id="alertTimeColumn" text="Actualizado" prefWidth="160" />
+                            <TableColumn fx:id="alertReadingColumn" text="Última Lectura" prefWidth="250" />
+                            <TableColumn fx:id="alertRiskColumn" text="Nivel de Riesgo" prefWidth="150" />
+                            <TableColumn fx:id="alertTimeColumn" text="Actualizado" prefWidth="150" />
                         </columns>
                     </TableView>
                 </VBox>
 
-                <HBox spacing="16" style="-fx-padding: 0 32 28 32;" VBox.vgrow="ALWAYS">
-                    <VBox spacing="10" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
-                        <Label text="Pacientes asignados" style="-fx-font-size: 17px; -fx-font-weight: 700; -fx-text-fill: #0B9A7B;" />
-                        <TableView fx:id="patientsTable" VBox.vgrow="ALWAYS">
-                            <columns>
-                                <TableColumn fx:id="patientNameColumn" text="Nombre" prefWidth="170" />
-                                <TableColumn fx:id="patientConditionColumn" text="Condicion" prefWidth="170" />
-                                <TableColumn fx:id="patientLastMetricColumn" text="Ultima medicion" prefWidth="170" />
-                                <TableColumn fx:id="patientTrendColumn" text="Tendencia" prefWidth="120" />
-                            </columns>
-                        </TableView>
+                <HBox spacing="25" VBox.vgrow="ALWAYS">
+                    <!-- Patient List & Trend -->
+                    <VBox spacing="20" HBox.hgrow="ALWAYS">
+                        <VBox spacing="15" styleClass="metric-card" VBox.vgrow="ALWAYS">
+                            <Label text="Lista de Pacientes" styleClass="topbar-welcome" style="-fx-font-size: 18px;" />
+                            <TableView fx:id="patientsTable" VBox.vgrow="ALWAYS" styleClass="modern-table">
+                                <columns>
+                                    <TableColumn fx:id="patientNameColumn" text="Nombre" prefWidth="180" />
+                                    <TableColumn fx:id="patientConditionColumn" text="Condición" prefWidth="150" />
+                                    <TableColumn fx:id="patientLastMetricColumn" text="Última Medición" prefWidth="180" />
+                                    <TableColumn fx:id="patientTrendColumn" text="Tendencia" prefWidth="120" />
+                                </columns>
+                            </TableView>
+                        </VBox>
 
                         <VBox styleClass="chart-card" VBox.vgrow="ALWAYS">
-                            <padding><Insets top="12" right="12" bottom="12" left="12" /></padding>
-                            <LineChart fx:id="doctorTrendChart" title="Evolucion promedio de glucosa" legendVisible="false" VBox.vgrow="ALWAYS">
+                            <padding><Insets top="20" right="20" bottom="20" left="20" /></padding>
+                            <Label text="Evolución Promedio de Glucosa" styleClass="stat-label" />
+                            <LineChart fx:id="doctorTrendChart" legendVisible="false" VBox.vgrow="ALWAYS">
                                 <xAxis>
                                     <NumberAxis label="Semana" autoRanging="false" lowerBound="1" upperBound="6" tickUnit="1" />
                                 </xAxis>
@@ -81,18 +92,18 @@
                         </VBox>
                     </VBox>
 
-                    <VBox spacing="12" prefWidth="290" HBox.hgrow="NEVER">
-                        <VBox styleClass="summary-card" VBox.vgrow="ALWAYS">
-                            <padding><Insets top="12" right="12" bottom="12" left="12" /></padding>
-                            <Label text="Estado clinico" styleClass="summary-label" />
-                            <PieChart fx:id="statusPie" prefHeight="200" labelsVisible="true" />
+                    <!-- Analytics & Actions -->
+                    <VBox spacing="20" prefWidth="320" HBox.hgrow="NEVER">
+                        <VBox styleClass="chart-card" VBox.vgrow="ALWAYS">
+                            <padding><Insets top="20" right="20" bottom="20" left="20" /></padding>
+                            <Label text="Distribución de Riesgo" styleClass="stat-label" />
+                            <PieChart fx:id="statusPie" labelsVisible="true" style="-fx-padding: 10 0 0 0;" />
                         </VBox>
 
-                        <VBox styleClass="summary-card" VBox.vgrow="ALWAYS">
-                            <padding><Insets top="12" right="12" bottom="12" left="12" /></padding>
-                            <Label text="Recomendaciones del dia" styleClass="summary-label" />
-                            <ListView fx:id="recommendationsList" VBox.vgrow="ALWAYS" />
-                            <Button text="Exportar resumen PDF" styleClass="btn-primary" onAction="#handleExportSummary" />
+                        <VBox styleClass="metric-card" spacing="15" VBox.vgrow="ALWAYS">
+                            <Label text="Recomendaciones" styleClass="stat-label" />
+                            <ListView fx:id="recommendationsList" VBox.vgrow="ALWAYS" styleClass="modern-list" />
+                            <Button text="Generar Informe PDF" styleClass="btn-primary" onAction="#handleExportSummary" maxWidth="Infinity" />
                         </VBox>
                     </VBox>
                 </HBox>

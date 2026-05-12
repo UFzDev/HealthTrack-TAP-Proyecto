@@ -8,62 +8,85 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.control.ScrollPane?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="ufzdev.HealthTrack.controllers.AdminDashboardController" stylesheets="@../css/global.css, @../css/admin.css" prefWidth="1000" prefHeight="700" style="-fx-background-color: #f6faf8;">
+<AnchorPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="ufzdev.HealthTrack.controllers.AdminDashboardController"
+            stylesheets="@../css/global.css, @../css/main.css, @../css/admin.css"
+            prefWidth="1000" prefHeight="700"
+            style="-fx-background-color: #f8fafc;">
+
     <ScrollPane fitToWidth="true" fitToHeight="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED"
                 AnchorPane.topAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.bottomAnchor="0"
                 styleClass="dashboard-scroll">
         <content>
-            <VBox spacing="0">
-                <VBox spacing="6" style="-fx-padding: 28 32 20 32;">
-                    <Label text="Panel Administrativo" style="-fx-font-size: 30px; -fx-font-weight: 700; -fx-text-fill: #0B9A7B;" />
-                    <Label text="Supervision de usuarios, sincronizacion y capacidad de reportes" style="-fx-font-size: 13px; -fx-text-fill: #768189;" />
+            <VBox spacing="30" style="-fx-padding: 35 40 40 40;">
+                
+                <!-- Header Section -->
+                <VBox spacing="8">
+                    <Label text="Panel Administrativo" styleClass="form-title" style="-fx-font-size: 28px;" />
+                    <Label text="Gestión de usuarios, monitoreo de infraestructura y generación de reportes maestros." 
+                           styleClass="form-subtitle" />
                 </VBox>
 
-                <HBox spacing="16" style="-fx-padding: 0 32 18 32;">
-                    <VBox styleClass="summary-card" HBox.hgrow="ALWAYS">
-                        <padding><Insets top="14" right="16" bottom="14" left="16" /></padding>
-                        <Label text="Usuarios registrados" styleClass="summary-label" />
-                        <Label fx:id="usersCount" styleClass="summary-number" />
+                <!-- Core Statistics -->
+                <GridPane hgap="20" vgap="20">
+                    <VBox styleClass="metric-card" GridPane.columnIndex="0" GridPane.rowIndex="0" HBox.hgrow="ALWAYS">
+                        <Label text="Usuarios Registrados" styleClass="stat-label" />
+                        <Label fx:id="usersCount" text="1,280" styleClass="stat-number" />
                     </VBox>
-                    <VBox styleClass="summary-card" HBox.hgrow="ALWAYS">
-                        <padding><Insets top="14" right="16" bottom="14" left="16" /></padding>
-                        <Label text="Medicos activos" styleClass="summary-label" />
-                        <Label fx:id="doctorsCount" styleClass="summary-number" />
+                    <VBox styleClass="metric-card" GridPane.columnIndex="1" GridPane.rowIndex="0" HBox.hgrow="ALWAYS">
+                        <Label text="Médicos Activos" styleClass="stat-label" />
+                        <Label fx:id="doctorsCount" text="85" styleClass="stat-number" />
                     </VBox>
-                    <VBox styleClass="summary-card" HBox.hgrow="ALWAYS">
-                        <padding><Insets top="14" right="16" bottom="14" left="16" /></padding>
-                        <Label text="Reportes generados hoy" styleClass="summary-label" />
-                        <Label fx:id="reportsCount" styleClass="summary-number" />
+                    <VBox styleClass="metric-card" GridPane.columnIndex="2" GridPane.rowIndex="0" HBox.hgrow="ALWAYS">
+                        <Label text="Reportes Generados" styleClass="stat-label" />
+                        <Label fx:id="reportsCount" text="15" styleClass="stat-number" />
+                    </VBox>
+                </GridPane>
+
+                <!-- System Health -->
+                <HBox spacing="20">
+                    <VBox styleClass="metric-card" HBox.hgrow="ALWAYS" spacing="10">
+                        <Label text="Estado de Firebase" styleClass="stat-label" />
+                        <HBox alignment="CENTER_LEFT" spacing="10">
+                            <Label fx:id="syncStatusValue" styleClass="status-pill status-ok" text="Conectado" />
+                            <Label text="Sincronización en tiempo real activa" styleClass="context-text" />
+                        </HBox>
+                    </VBox>
+                    <VBox styleClass="metric-card" HBox.hgrow="ALWAYS" spacing="10">
+                        <Label text="Estado de APIs Externas" styleClass="stat-label" />
+                        <HBox alignment="CENTER_LEFT" spacing="10">
+                            <Label fx:id="apiStatusValue" styleClass="status-pill status-warning" text="Parcial" />
+                            <Label text="Latencia elevada en servicio de correo" styleClass="context-text" />
+                        </HBox>
                     </VBox>
                 </HBox>
 
-                <HBox spacing="16" style="-fx-padding: 0 32 20 32;">
-                    <VBox styleClass="summary-card" HBox.hgrow="ALWAYS">
-                        <padding><Insets top="14" right="16" bottom="14" left="16" /></padding>
-                        <Label text="Estado Firebase" styleClass="summary-label" />
-                        <Label fx:id="syncStatusValue" styleClass="status-pill status-ok" text="Conectado" />
-                    </VBox>
-                    <VBox styleClass="summary-card" HBox.hgrow="ALWAYS">
-                        <padding><Insets top="14" right="16" bottom="14" left="16" /></padding>
-                        <Label text="Estado APIs externas" styleClass="summary-label" />
-                        <Label fx:id="apiStatusValue" styleClass="status-pill status-warning" text="Parcial" />
-                    </VBox>
-                </HBox>
-
-                <HBox spacing="16" style="-fx-padding: 0 32 28 32;" VBox.vgrow="ALWAYS">
-                    <VBox spacing="10" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
-                        <Label text="Logs de actividad" style="-fx-font-size: 17px; -fx-font-weight: 700; -fx-text-fill: #0B9A7B;" />
-                        <ListView fx:id="activityLogs" VBox.vgrow="ALWAYS" />
+                <HBox spacing="25" VBox.vgrow="ALWAYS">
+                    <!-- Activity Logs -->
+                    <VBox spacing="15" styleClass="metric-card" HBox.hgrow="ALWAYS">
+                        <Label text="Logs de Actividad del Sistema" styleClass="topbar-welcome" style="-fx-font-size: 18px;" />
+                        <ListView fx:id="activityLogs" VBox.vgrow="ALWAYS" styleClass="modern-list" />
                     </VBox>
 
-                    <VBox styleClass="summary-card" spacing="10" prefWidth="280" HBox.hgrow="NEVER">
-                        <padding><Insets top="14" right="14" bottom="14" left="14" /></padding>
-                        <Label text="Acciones rapidas" styleClass="summary-label" />
-                        <Button text="Exportar reporte PDF" styleClass="btn-primary" onAction="#handleExportPdf" />
-                        <Button text="Exportar reporte Excel" styleClass="btn-primary" onAction="#handleExportExcel" />
-                        <Button text="Verificar sincronizacion" styleClass="btn-secondary" onAction="#handleCheckSync" />
+                    <!-- Quick Actions -->
+                    <VBox spacing="20" prefWidth="300" HBox.hgrow="NEVER">
+                        <VBox styleClass="metric-card" spacing="15">
+                            <Label text="Acciones Rápidas" styleClass="stat-label" />
+                            <VBox spacing="10">
+                                <Button text="Exportar Reporte PDF" styleClass="btn-primary" onAction="#handleExportPdf" maxWidth="Infinity" />
+                                <Button text="Exportar Reporte Excel" styleClass="btn-primary" onAction="#handleExportExcel" maxWidth="Infinity" 
+                                        style="-fx-background-color: linear-gradient(to bottom, #217346, #1a5c38);" />
+                                <Button text="Verificar Sincronización" styleClass="btn-secondary" onAction="#handleCheckSync" maxWidth="Infinity" />
+                            </VBox>
+                        </VBox>
+                        
+                        <VBox styleClass="metric-card" spacing="10" style="-fx-background-color: #f1f5f9;">
+                            <Label text="Mantenimiento" styleClass="stat-label" />
+                            <Label text="Próxima ventana de mantenimiento: Domingo 02:00 AM" styleClass="context-text" wrapText="true" />
+                        </VBox>
                     </VBox>
                 </HBox>
             </VBox>
