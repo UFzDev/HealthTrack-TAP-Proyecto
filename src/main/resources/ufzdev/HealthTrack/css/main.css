@@ -4,10 +4,11 @@
 
 /* Sidebar: Refined Glassmorphism & Depth */
 .sidebar {
-    -fx-background-color: linear-gradient(to bottom, #08745E, #0B9A7B);
+    -fx-background-color: #0B9A7B;
     -fx-pref-width: 280px;
     -fx-min-width: 280px;
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 20, 0, 0, 0);
+    -fx-border-color: rgba(0, 0, 0, 0.05);
+    -fx-border-width: 0 1 0 0;
 }
 
 .sidebar-logo {
@@ -49,9 +50,8 @@
 }
 
 .nav-active {
-    -fx-background-color: rgba(255, 255, 255, 0.15);
+    -fx-background-color: rgba(255, 255, 255, 0.1);
     -fx-text-fill: #ffffff;
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 5, 0, 0, 0);
 }
 
 .nav-button-logout {
@@ -108,14 +108,12 @@
     -fx-padding: 24px;
     -fx-background-radius: 16;
     -fx-border-radius: 16;
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.04), 10, 0, 0, 2);
     -fx-border-color: #f1f5f9;
     -fx-border-width: 1;
 }
 
 .metric-card:hover {
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.08), 15, 0, 0, 4);
-    -fx-translate-y: -2;
+    -fx-background-color: #f8fafc;
 }
 
 .stat-number {
@@ -133,19 +131,17 @@
 
 /* COMMON BUTTONS */
 .btn-primary {
-    -fx-background-color: linear-gradient(to bottom, #12B58A, #0B9A7B);
+    -fx-background-color: #0B9A7B;
     -fx-text-fill: white;
     -fx-background-radius: 12;
     -fx-padding: 12 24 12 24;
     -fx-font-weight: 700;
     -fx-font-size: 14px;
-    -fx-effect: dropshadow(gaussian, rgba(11, 154, 123, 0.2), 10, 0.0, 0, 4);
     -fx-cursor: hand;
 }
 
 .btn-primary:hover {
-    -fx-background-color: linear-gradient(to bottom, #10a37c, #098a6e);
-    -fx-effect: dropshadow(gaussian, rgba(11, 154, 123, 0.3), 15, 0.0, 0, 6);
+    -fx-background-color: #10a37c;
 }
 
 .btn-primary:pressed {

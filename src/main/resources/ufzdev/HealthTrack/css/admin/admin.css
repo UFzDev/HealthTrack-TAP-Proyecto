@@ -30,11 +30,11 @@
 
 /* Specific buttons with gradients */
 .btn-manage-users {
-    -fx-background-color: linear-gradient(to bottom, #4f46e5, #3730a3);
+    -fx-background-color: #4f46e5;
 }
 
 .btn-export-excel {
-    -fx-background-color: linear-gradient(to bottom, #217346, #1a5c38);
+    -fx-background-color: #217346;
 }
 
 .maintenance-card {
