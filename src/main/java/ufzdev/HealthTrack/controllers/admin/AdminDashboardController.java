@@ -1,4 +1,4 @@
-package ufzdev.HealthTrack.controllers;
+package ufzdev.HealthTrack.controllers.admin;
 
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -9,6 +9,9 @@ import ufzdev.HealthTrack.util.AlertsUtil;
 import ufzdev.HealthTrack.dao.UserDao;
 import ufzdev.HealthTrack.dao.UserFirestoreDao;
 import ufzdev.HealthTrack.models.UserRole;
+import ufzdev.HealthTrack.util.NavigationUtil;
+import javafx.stage.Stage;
+import javafx.scene.Node;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -29,7 +32,7 @@ public class AdminDashboardController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // Cargar conteos reales desde Firestore
+        // Cargar conteos
         UserDao userDao = new UserFirestoreDao();
         try {
             int totalUsers = userDao.countAll();
@@ -78,6 +81,11 @@ public class AdminDashboardController implements Initializable {
     @FXML
     private void handleCheckSync() {
         AlertsUtil.showSuccess("Sincronizacion", "Firebase operativo. Ultima comprobacion correcta.");
+    }
+
+    @FXML
+    private void handleManageUsers(javafx.event.ActionEvent event) {
+        NavigationUtil.goToUserManagement();
     }
 }
 

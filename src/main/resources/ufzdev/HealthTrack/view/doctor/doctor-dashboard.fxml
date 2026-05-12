@@ -16,8 +16,8 @@
 <?import javafx.scene.control.ScrollPane?>
 
 <AnchorPane xmlns:fx="http://javafx.com/fxml"
-            fx:controller="ufzdev.HealthTrack.controllers.DoctorDashboardController"
-            stylesheets="@../css/global.css, @../css/main.css, @../css/doctor.css"
+            fx:controller="ufzdev.HealthTrack.controllers.doctor.DoctorDashboardController"
+            stylesheets="@../../css/global.css, @../../css/main.css, @../../css/doctor/doctor.css"
             prefWidth="1000" prefHeight="700"
             style="-fx-background-color: #f8fafc;">
 

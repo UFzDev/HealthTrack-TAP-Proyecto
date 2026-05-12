@@ -7,8 +7,6 @@ import com.google.cloud.firestore.QuerySnapshot;
 import ufzdev.HealthTrack.config.FirebaseConfig;
 import ufzdev.HealthTrack.models.HealthMetricModel;
 
-import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.util.*;
 
 /**
@@ -103,4 +101,3 @@ public class HealthMetricFirestoreDao implements HealthMetricDao {
         db.collection(COLLECTION).document(id).delete().get();
     }
 }
-

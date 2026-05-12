@@ -1,4 +1,4 @@
-package ufzdev.HealthTrack.controllers;
+package ufzdev.HealthTrack.controllers.patient;
 
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;

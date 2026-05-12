@@ -1,0 +1,42 @@
+/* Admin dashboard specific styles */
+.admin-container {
+    -fx-background-color: #f8fafc;
+}
+
+.admin-content {
+    -fx-padding: 35 40 40 40;
+}
+
+.admin-title {
+    -fx-font-size: 28px;
+}
+
+.admin-subtitle {
+    -fx-font-size: 18px;
+}
+
+.admin-management-container {
+    -fx-background-color: #f8fafc;
+    -fx-padding: 30;
+}
+
+.admin-management-title {
+    -fx-font-size: 24px;
+}
+
+.activity-log {
+    -fx-font-size: 13px;
+}
+
+/* Specific buttons with gradients */
+.btn-manage-users {
+    -fx-background-color: linear-gradient(to bottom, #4f46e5, #3730a3);
+}
+
+.btn-export-excel {
+    -fx-background-color: linear-gradient(to bottom, #217346, #1a5c38);
+}
+
+.maintenance-card {
+    -fx-background-color: #f1f5f9;
+}

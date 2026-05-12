@@ -12,20 +12,20 @@
 <?import javafx.scene.control.ScrollPane?>
 
 <AnchorPane xmlns:fx="http://javafx.com/fxml"
-            fx:controller="ufzdev.HealthTrack.controllers.AdminDashboardController"
-            stylesheets="@../css/global.css, @../css/main.css, @../css/admin.css"
+            fx:controller="ufzdev.HealthTrack.controllers.admin.AdminDashboardController"
+            stylesheets="@../../css/global.css, @../../css/main.css, @../../css/admin/admin.css"
             prefWidth="1000" prefHeight="700"
-            style="-fx-background-color: #f8fafc;">
+            styleClass="admin-container">
 
     <ScrollPane fitToWidth="true" fitToHeight="true" hbarPolicy="NEVER" vbarPolicy="AS_NEEDED"
                 AnchorPane.topAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.bottomAnchor="0"
                 styleClass="dashboard-scroll">
         <content>
-            <VBox spacing="30" style="-fx-padding: 35 40 40 40;">
+            <VBox spacing="30" styleClass="admin-content">
                 
                 <!-- Header Section -->
                 <VBox spacing="8">
-                    <Label text="Panel Administrativo" styleClass="form-title" style="-fx-font-size: 28px;" />
+                    <Label text="Panel Administrativo" styleClass="form-title, admin-title" />
                     <Label text="Gestión de usuarios, monitoreo de infraestructura y generación de reportes maestros." 
                            styleClass="form-subtitle" />
                 </VBox>
@@ -67,7 +67,7 @@
                 <HBox spacing="25" VBox.vgrow="ALWAYS">
                     <!-- Activity Logs -->
                     <VBox spacing="15" styleClass="metric-card" HBox.hgrow="ALWAYS">
-                        <Label text="Logs de Actividad del Sistema" styleClass="topbar-welcome" style="-fx-font-size: 18px;" />
+                        <Label text="Logs de Actividad del Sistema" styleClass="topbar-welcome, admin-subtitle" />
                         <ListView fx:id="activityLogs" VBox.vgrow="ALWAYS" styleClass="modern-list" />
                     </VBox>
 
@@ -76,14 +76,14 @@
                         <VBox styleClass="metric-card" spacing="15">
                             <Label text="Acciones Rápidas" styleClass="stat-label" />
                             <VBox spacing="10">
+                                <Button text="Gestionar Usuarios" styleClass="btn-primary, btn-manage-users" onAction="#handleManageUsers" maxWidth="Infinity" />
                                 <Button text="Exportar Reporte PDF" styleClass="btn-primary" onAction="#handleExportPdf" maxWidth="Infinity" />
-                                <Button text="Exportar Reporte Excel" styleClass="btn-primary" onAction="#handleExportExcel" maxWidth="Infinity" 
-                                        style="-fx-background-color: linear-gradient(to bottom, #217346, #1a5c38);" />
+                                <Button text="Exportar Reporte Excel" styleClass="btn-primary, btn-export-excel" onAction="#handleExportExcel" maxWidth="Infinity" />
                                 <Button text="Verificar Sincronización" styleClass="btn-secondary" onAction="#handleCheckSync" maxWidth="Infinity" />
                             </VBox>
                         </VBox>
                         
-                        <VBox styleClass="metric-card" spacing="10" style="-fx-background-color: #f1f5f9;">
+                        <VBox styleClass="metric-card, maintenance-card" spacing="10">
                             <Label text="Mantenimiento" styleClass="stat-label" />
                             <Label text="Próxima ventana de mantenimiento: Domingo 02:00 AM" styleClass="context-text" wrapText="true" />
                         </VBox>

@@ -34,15 +34,11 @@ public class RegisterController implements Initializable {
     @FXML
     private PasswordField passwordField;
     @FXML
-    private ComboBox<UserRole> roleComboBox;
-    @FXML
     private Button btnRegister;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        // Cargar los roles en el ComboBox
-        roleComboBox.setItems(FXCollections.observableArrayList(UserRole.values()));
-        roleComboBox.setValue(UserRole.PACIENTE); // Por defecto selecciona PACIENTE
+        // El registro público es exclusivo para pacientes
     }
 
     @FXML
@@ -51,16 +47,11 @@ public class RegisterController implements Initializable {
         String user = usernameField.getText();
         String email = emailField.getText();
         String password = passwordField.getText();
-        UserRole selectedRole = roleComboBox.getValue();
+        UserRole selectedRole = UserRole.PACIENTE; // siempre los usuarios nuevos son pacientes
 
         // Validar que todos los campos estén llenos
         if (name.isBlank() || user.isBlank() || email.isBlank() || password.isBlank()) {
             AlertsUtil.showError("Campos incompletos", "Por favor completa todos los campos.");
-            return;
-        }
-
-        if (selectedRole == null) {
-            AlertsUtil.showError("Rol no seleccionado", "Por favor selecciona un rol.");
             return;
         }
 

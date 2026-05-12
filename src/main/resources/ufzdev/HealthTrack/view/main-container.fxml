@@ -13,7 +13,7 @@
 
 <HBox xmlns:fx="http://javafx.com/fxml" fx:controller="ufzdev.HealthTrack.controllers.MainContainerController"
       stylesheets="@../css/global.css, @../css/main.css" prefWidth="1400" prefHeight="900"
-      style="-fx-background-color: #f6faf8;">
+      styleClass="main-root">
 
     <!-- Sidebar: Full Height -->
     <VBox fx:id="sidebar" styleClass="sidebar" spacing="20.0" HBox.hgrow="NEVER">
@@ -27,7 +27,7 @@
         <Separator styleClass="sidebar-divider"/>
 
         <VBox spacing="8.0" VBox.vgrow="ALWAYS">
-            <Button text="Panel de Control" fx:id="btnHome" onAction="#openHome" styleClass="nav-button" maxWidth="Infinity" />
+            <Button text="Panel de Control" fx:id="btnHome" onAction="#openHome" styleClass="nav-button, nav-active" maxWidth="Infinity" />
             <Button text="Mi Perfil" fx:id="btnProfile" onAction="#openProfile" styleClass="nav-button" maxWidth="Infinity" />
             <Button text="Configuración" fx:id="btnSettings" onAction="#openSettings" styleClass="nav-button" maxWidth="Infinity" />
         </VBox>

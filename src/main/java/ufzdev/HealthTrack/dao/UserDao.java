@@ -2,7 +2,6 @@ package ufzdev.HealthTrack.dao;
 
 import ufzdev.HealthTrack.models.UserModel;
 import ufzdev.HealthTrack.models.UserRole;
-import java.util.List;
 
 public interface UserDao {
     UserModel findById(String uid) throws Exception;
@@ -21,4 +20,5 @@ public interface UserDao {
     int countAll() throws Exception;
 
     int countByRole(UserRole role) throws Exception;
+    java.util.List<UserModel> listAll() throws Exception;
 }

@@ -1,52 +1,66 @@
-/* Main container specific styles */
+.main-root {
+    -fx-background-color: #f6faf8;
+}
+
+/* Sidebar: Refined Glassmorphism & Depth */
 .sidebar {
-    -fx-background-color: linear-gradient(to bottom, #12B58A, #0B9A7B);
-    -fx-pref-width: 260px;
-    -fx-min-width: 260px;
+    -fx-background-color: linear-gradient(to bottom, #08745E, #0B9A7B);
+    -fx-pref-width: 280px;
+    -fx-min-width: 280px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 20, 0, 0, 0);
 }
 
 .sidebar-logo {
     -fx-text-fill: #ffffff;
-    -fx-font-size: 26px;
+    -fx-font-size: 28px;
     -fx-font-weight: 800;
+    -fx-letter-spacing: -0.5px;
 }
 
 .sidebar-subtitle {
     -fx-text-fill: #dff6ef;
-    -fx-font-size: 13px;
-    -fx-font-weight: 400;
-    -fx-opacity: 0.8;
-    -fx-padding: -10 0 0 0;
+    -fx-font-size: 12px;
+    -fx-font-weight: 600;
+    -fx-opacity: 0.7;
+    -fx-padding: -8 0 0 0;
+    -fx-text-transform: uppercase;
 }
 
 .sidebar-divider {
-    -fx-border-color: rgba(255, 255, 255, 0.15);
+    -fx-border-color: rgba(255, 255, 255, 0.1);
     -fx-border-width: 0 0 1 0;
 }
 
 .nav-button {
     -fx-background-color: transparent;
-    -fx-text-fill: #e0f2f1;
+    -fx-text-fill: rgba(255, 255, 255, 0.7);
     -fx-font-size: 14px;
     -fx-font-weight: 600;
     -fx-alignment: center-left;
-    -fx-padding: 12 16 12 16;
+    -fx-padding: 14 20 14 20;
     -fx-background-radius: 12;
     -fx-cursor: hand;
+    -fx-transition: all 0.3s ease;
 }
 
 .nav-button:hover {
-    -fx-background-color: rgba(255, 255, 255, 0.12);
+    -fx-background-color: rgba(255, 255, 255, 0.08);
     -fx-text-fill: #ffffff;
 }
 
+.nav-active {
+    -fx-background-color: rgba(255, 255, 255, 0.15);
+    -fx-text-fill: #ffffff;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 5, 0, 0, 0);
+}
+
 .nav-button-logout {
-    -fx-background-color: rgba(0, 0, 0, 0.1);
+    -fx-background-color: rgba(255, 255, 255, 0.05);
     -fx-text-fill: #ffffff;
     -fx-font-size: 14px;
-    -fx-font-weight: 600;
+    -fx-font-weight: 700;
     -fx-alignment: center-left;
-    -fx-padding: 12 16 12 16;
+    -fx-padding: 14 20 14 20;
     -fx-background-radius: 12;
     -fx-cursor: hand;
 }

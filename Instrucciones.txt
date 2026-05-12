@@ -1,0 +1,42 @@
+Aplicación de Escritorio (JavaFX)
+Módulos principales
+1. Gestión de usuarios
+• Registro / login
+• Roles: paciente, médico, administrador
+2. Registro de métricas
+• Presión arterial (sistólica/diastólica)
+• Glucosa
+• Peso / IMC
+• Frecuencia cardíaca
+• Fecha/hora automática
+3. Visualización avanzada
+• Gráficos de evolución (línea, barras)
+• Promedios y tendencias
+• Alertas visuales (valores críticos)
+4. Reportes
+• Generación de PDF clínicos
+• Exportación a Excel
+• Historial descargable
+5. Recomendaciones inteligentes
+• Basadas en reglas (no IA compleja)
+• Ejemplo:
+◦ “Presión elevada → reducir sodio”
+◦ “Glucosa alta → actividad física sugerida”
+Consumo de servicios web
+Integraciones prácticas:
+• API de salud pública (recomendaciones oficiales)
+• APIs de clima (para sugerencias de actividad física)
+• APIs nutricionales
+Ejemplo:
+Si clima = lluvioso → sugerir ejercicio en casa
+Gráficos estadísticos
+Métricas:
+• Evolución semanal/mensual
+• Comparativas
+• Promedios
+Reportes
+Contenido:
+• Historial de métricas
+• Gráficos embebidos
+• Alertas detectadas
+• Recomendaciones

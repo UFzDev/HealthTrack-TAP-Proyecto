@@ -21,7 +21,7 @@ public class NavigationUtil {
             stage.setTitle(title);
             stage.setScene(scene);
             stage.centerOnScreen();
-            //stage.setMaximized(true);
+            // stage.setMaximized(true);
             stage.show();
 
         } catch (IOException e) {
@@ -33,7 +33,6 @@ public class NavigationUtil {
     public static void goToLogin(Stage stage) {
         renderView(stage, "login.fxml", "Login - HealthTrack", 1200, 700);
     }
-
 
     public static void goToTasks(Stage stage) {
         renderView(stage, "tasks.fxml", "Gestión de Tareas - HealthTrack", 1400, 900);
@@ -50,7 +49,6 @@ public class NavigationUtil {
     public static void goToStats(Stage stage) {
         renderView(stage, "stats.fxml", "Estadisticas - ToDo List", 1400, 900);
     }
-
 
     private static void showModal(String fxmlFile, String title, int width, int height) {
         try {
@@ -81,12 +79,12 @@ public class NavigationUtil {
         showModal("register.fxml", "Crear Cuenta - HealthTrack", 1000, 500);
     }
 
-    public static void goToNewTask() {
-        showModal("new-task.fxml", "Nueva Tarea - ToDo List", 550, 800);
+    public static void goToUserManagement() {
+        showModal("admin/admin-user-management.fxml", "Gestión de Usuarios - HealthTrack", 950, 650);
     }
 
-    public static void goToSettings() {
-        showModal("settings.fxml", "Configuración - ToDo List", 625, 725);
+    public static void goToAdminUserModal() {
+        showModal("admin/admin-user-modal.fxml", "Registrar Personal - HealthTrack", 550, 650);
     }
 
 }

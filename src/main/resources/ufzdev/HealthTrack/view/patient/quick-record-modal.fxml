@@ -10,8 +10,8 @@
 <?import javafx.scene.layout.VBox?>
 
 <VBox xmlns:fx="http://javafx.com/fxml"
-      fx:controller="ufzdev.HealthTrack.controllers.QuickRecordModalController"
-      stylesheets="@../css/global.css, @../css/main.css, @../css/patient.css, @../css/quick-record.css"
+      fx:controller="ufzdev.HealthTrack.controllers.patient.QuickRecordModalController"
+      stylesheets="@../../css/global.css, @../../css/main.css, @../../css/patient/patient.css, @../../css/patient/quick-record.css"
       spacing="25" prefWidth="640" prefHeight="550" styleClass="quick-modal-root"
       style="-fx-background-color: #ffffff; -fx-background-radius: 20; -fx-border-radius: 20;">
 

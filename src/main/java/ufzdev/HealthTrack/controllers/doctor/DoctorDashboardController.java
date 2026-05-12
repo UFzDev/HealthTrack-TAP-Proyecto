@@ -1,6 +1,7 @@
-package ufzdev.HealthTrack.controllers;
+package ufzdev.HealthTrack.controllers.doctor;
 
 import javafx.beans.property.ReadOnlyStringWrapper;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;

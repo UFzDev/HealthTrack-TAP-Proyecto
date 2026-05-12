@@ -44,13 +44,13 @@ public class MainContainerController implements Initializable {
         UserModel currentUser = UserSessionUtil.getInstance().getUser();
         if (currentUser != null) {
             String userName = currentUser.getName() != null && !currentUser.getName().isBlank()
-                ? currentUser.getName()
-                : currentUser.getUsername();
+                    ? currentUser.getName()
+                    : currentUser.getUsername();
             welcomeLabel.setText("Bienvenido, " + userName);
 
             String roleLabel = currentUser.getRole() != null
-                ? "• " + getRoleLabel(currentUser.getRole())
-                : "• Usuario";
+                    ? "• " + getRoleLabel(currentUser.getRole())
+                    : "• Usuario";
             userRoleLabel.setText(roleLabel);
         } else {
             welcomeLabel.setText("Bienvenido");
@@ -62,13 +62,13 @@ public class MainContainerController implements Initializable {
         UserRole role = currentUser != null ? currentUser.getRole() : null;
         try {
             if (role == UserRole.MEDICO) {
-                loadContent("doctor-dashboard.fxml");
+                loadContent("doctor/doctor-dashboard.fxml");
                 fabRecord.setVisible(false);
             } else if (role == UserRole.ADMINISTRADOR) {
-                loadContent("admin-dashboard.fxml");
+                loadContent("admin/admin-dashboard.fxml");
                 fabRecord.setVisible(false);
             } else {
-                loadContent("patient-dashboard.fxml");
+                loadContent("patient/patient-dashboard.fxml");
                 fabRecord.setVisible(true);
             }
         } catch (Exception e) {
@@ -97,7 +97,7 @@ public class MainContainerController implements Initializable {
     private void openProfile() {
         // placeholder for profile view
         try {
-            loadContent("patient-dashboard.fxml");
+            loadContent("patient/patient-dashboard.fxml");
             fabRecord.setVisible(true);
         } catch (IOException e) {
             AlertsUtil.showError("Error", "No se pudo abrir Perfil.");
@@ -106,7 +106,6 @@ public class MainContainerController implements Initializable {
 
     @FXML
     private void openSettings() {
-        NavigationUtil.goToSettings();
     }
 
     @FXML
@@ -118,7 +117,8 @@ public class MainContainerController implements Initializable {
     @FXML
     private void handleQuickRecord() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ufzdev/HealthTrack/view/quick-record-modal.fxml"));
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource("/ufzdev/HealthTrack/view/patient/quick-record-modal.fxml"));
             Parent root = loader.load();
 
             Stage owner = (Stage) sidebar.getScene().getWindow();
@@ -131,11 +131,12 @@ public class MainContainerController implements Initializable {
             modal.centerOnScreen();
             modal.showAndWait();
 
-            // Después de cerrar el modal, recargar el panel del paciente para reflejar cambios en sesión
+            // Después de cerrar el modal, recargar el panel del paciente para reflejar
+            // cambios en sesión
             try {
                 UserModel currentUser = UserSessionUtil.getInstance().getUser();
                 if (currentUser != null && currentUser.getRole() == UserRole.PACIENTE) {
-                    loadContent("patient-dashboard.fxml");
+                    loadContent("patient/patient-dashboard.fxml");
                 }
             } catch (Exception ex) {
                 // No bloquear la UX por fallo al recargar
@@ -154,5 +155,3 @@ public class MainContainerController implements Initializable {
         };
     }
 }
-
-
