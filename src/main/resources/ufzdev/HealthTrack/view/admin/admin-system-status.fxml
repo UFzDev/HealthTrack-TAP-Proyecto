@@ -15,6 +15,10 @@
         <Label text="Estado de la Aplicación" styleClass="form-title, admin-title" />
         <Label text="Registro detallado de auditoría y actividad reciente del sistema." 
                styleClass="form-subtitle" />
+    <HBox spacing="15" alignment="CENTER_LEFT">
+        <javafx.scene.control.Button text="Exportar PDF" onAction="#handleExportPdf" styleClass="btn-secondary" />
+        <javafx.scene.control.Button text="Exportar Excel" onAction="#handleExportExcel" styleClass="btn-secondary" />
+    </HBox>
     </VBox>
 
     <VBox spacing="15" VBox.vgrow="ALWAYS" styleClass="metric-card">
