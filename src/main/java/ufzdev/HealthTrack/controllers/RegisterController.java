@@ -1,10 +1,8 @@
 package ufzdev.HealthTrack.controllers;
 
-import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
@@ -78,8 +76,10 @@ public class RegisterController implements Initializable {
                     return newUserModel;
                 },
                 ignored -> {
-                    AlertsUtil.showSuccess("Registro exitoso", "Bienvenido a HealthTrack, " + newUserModel.getName() + "!");
-                    System.out.println("Registro exitoso en Firebase para: " + newUserModel.getName() + " con rol: " + selectedRole);
+                    AlertsUtil.showSuccess("Registro exitoso",
+                            "Bienvenido a HealthTrack, " + newUserModel.getName() + "!");
+                    System.out.println("Registro exitoso en Firebase para: " + newUserModel.getName() + " con rol: "
+                            + selectedRole);
                     btnRegister.setDisable(false);
                     handleCancel();
                 },
@@ -87,8 +87,7 @@ public class RegisterController implements Initializable {
                     AlertsUtil.showError("Error durante el registro", "Error: " + error.getMessage());
                     System.out.println("Error durante el registro: " + error.getMessage());
                     btnRegister.setDisable(false);
-                }
-        );
+                });
     }
 
     @FXML

@@ -1,17 +1,13 @@
 package ufzdev.HealthTrack.controllers.admin;
 
-import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import ufzdev.HealthTrack.util.AlertsUtil;
 import ufzdev.HealthTrack.dao.UserDao;
 import ufzdev.HealthTrack.dao.UserFirestoreDao;
 import ufzdev.HealthTrack.models.UserRole;
 import ufzdev.HealthTrack.util.NavigationUtil;
-import javafx.stage.Stage;
-import javafx.scene.Node;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -40,7 +36,9 @@ public class AdminDashboardController implements Initializable {
 
             // Intentar contar reportes si existe la colección "reportes"
             try {
-                int reports = userDao instanceof UserFirestoreDao ? ((UserFirestoreDao) userDao).getFirestore().collection("reportes").get().get().size() : 0;
+                int reports = userDao instanceof UserFirestoreDao
+                        ? ((UserFirestoreDao) userDao).getFirestore().collection("reportes").get().get().size()
+                        : 0;
                 reportsCount.setText(String.valueOf(reports));
             } catch (Exception e) {
                 reportsCount.setText("-");
@@ -79,4 +77,3 @@ public class AdminDashboardController implements Initializable {
         NavigationUtil.goToUserManagement();
     }
 }
-

@@ -76,7 +76,8 @@ public class QuickRecordModalController implements Initializable {
 
         // Validar plausibilidad de las mediciones para evitar datos inventados
         try {
-            HealthMetricValidator.validateQuickRecord(bpSystolicInput, bpDiastolicInput, glucoseInput, heartRateInput, weightInput, heightInput);
+            HealthMetricValidator.validateQuickRecord(bpSystolicInput, bpDiastolicInput, glucoseInput, heartRateInput,
+                    weightInput, heightInput);
         } catch (ValidationException ve) {
             AlertsUtil.showError("Entrada inválida", ve.getMessage());
             return;
@@ -87,7 +88,6 @@ public class QuickRecordModalController implements Initializable {
 
             // Extraer valores
             double systolic = Double.parseDouble(bpSystolicInput.getText().trim());
-            double diastolic = Double.parseDouble(bpDiastolicInput.getText().trim());
             double glucose = Double.parseDouble(glucoseInput.getText().trim());
             double heartRate = Double.parseDouble(heartRateInput.getText().trim());
             double weight = Double.parseDouble(weightInput.getText().trim());

@@ -1,7 +1,6 @@
 package ufzdev.HealthTrack.controllers.doctor;
 
 import javafx.beans.property.ReadOnlyStringWrapper;
-import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
@@ -65,15 +64,23 @@ public class DoctorDashboardController {
     }
 
     private void bindTables() {
-        alertPatientColumn.setCellValueFactory(data -> new ReadOnlyStringWrapper(data.getValue().getOrDefault("patient", "-")));
-        alertReadingColumn.setCellValueFactory(data -> new ReadOnlyStringWrapper(data.getValue().getOrDefault("reading", "-")));
-        alertRiskColumn.setCellValueFactory(data -> new ReadOnlyStringWrapper(data.getValue().getOrDefault("risk", "-")));
-        alertTimeColumn.setCellValueFactory(data -> new ReadOnlyStringWrapper(data.getValue().getOrDefault("time", "-")));
+        alertPatientColumn
+                .setCellValueFactory(data -> new ReadOnlyStringWrapper(data.getValue().getOrDefault("patient", "-")));
+        alertReadingColumn
+                .setCellValueFactory(data -> new ReadOnlyStringWrapper(data.getValue().getOrDefault("reading", "-")));
+        alertRiskColumn
+                .setCellValueFactory(data -> new ReadOnlyStringWrapper(data.getValue().getOrDefault("risk", "-")));
+        alertTimeColumn
+                .setCellValueFactory(data -> new ReadOnlyStringWrapper(data.getValue().getOrDefault("time", "-")));
 
-        patientNameColumn.setCellValueFactory(data -> new ReadOnlyStringWrapper(data.getValue().getOrDefault("name", "-")));
-        patientConditionColumn.setCellValueFactory(data -> new ReadOnlyStringWrapper(data.getValue().getOrDefault("condition", "-")));
-        patientLastMetricColumn.setCellValueFactory(data -> new ReadOnlyStringWrapper(data.getValue().getOrDefault("last", "-")));
-        patientTrendColumn.setCellValueFactory(data -> new ReadOnlyStringWrapper(data.getValue().getOrDefault("trend", "-")));
+        patientNameColumn
+                .setCellValueFactory(data -> new ReadOnlyStringWrapper(data.getValue().getOrDefault("name", "-")));
+        patientConditionColumn
+                .setCellValueFactory(data -> new ReadOnlyStringWrapper(data.getValue().getOrDefault("condition", "-")));
+        patientLastMetricColumn
+                .setCellValueFactory(data -> new ReadOnlyStringWrapper(data.getValue().getOrDefault("last", "-")));
+        patientTrendColumn
+                .setCellValueFactory(data -> new ReadOnlyStringWrapper(data.getValue().getOrDefault("trend", "-")));
     }
 
     private void loadFromDatabase() {
@@ -102,10 +109,12 @@ public class DoctorDashboardController {
                 r.put("trend", "-");
                 patientsRows.add(r);
             }
-            javafx.collections.ObservableList<Map<String, String>> patientsObs = javafx.collections.FXCollections.observableArrayList(patientsRows);
+            javafx.collections.ObservableList<Map<String, String>> patientsObs = javafx.collections.FXCollections
+                    .observableArrayList(patientsRows);
             patientsTable.setItems(patientsObs);
 
-            // Vaciar o establecer datos mínimos para alertas y charts; se pueden completar con datos reales si se modelan mediciones
+            // Vaciar o establecer datos mínimos para alertas y charts; se pueden completar
+            // con datos reales si se modelan mediciones
             alertsTable.setItems(javafx.collections.FXCollections.observableArrayList(new ArrayList<>()));
             recommendationsList.setItems(javafx.collections.FXCollections.observableArrayList(new ArrayList<>()));
             getStatusPie().setData(javafx.collections.FXCollections.observableArrayList(new ArrayList<>()));
@@ -117,16 +126,7 @@ public class DoctorDashboardController {
         }
     }
 
-    private Map<String, String> row(String... pairs) {
-        Map<String, String> map = new HashMap<>();
-        for (int i = 0; i + 1 < pairs.length; i += 2) {
-            map.put(pairs[i], pairs[i + 1]);
-        }
-        return map;
-    }
-
     private PieChart getStatusPie() {
         return statusPie;
     }
 }
-

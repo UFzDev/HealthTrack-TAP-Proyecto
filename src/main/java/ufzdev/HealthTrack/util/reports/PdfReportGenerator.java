@@ -9,7 +9,6 @@ import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.element.Table;
 import com.itextpdf.layout.properties.UnitValue;
 
-import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -31,12 +30,13 @@ public class PdfReportGenerator implements ReportGenerator {
         Path outputPath = outputDir.resolve(fileName + ".pdf");
 
         try (PdfWriter writer = new PdfWriter(outputPath.toFile());
-             PdfDocument pdf = new PdfDocument(writer);
-             Document document = new Document(pdf)) {
+                PdfDocument pdf = new PdfDocument(writer);
+                Document document = new Document(pdf)) {
 
             // Título
             document.add(new Paragraph(title).setBold().setFontSize(18));
-            document.add(new Paragraph("Generado el: " + LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"))));
+            document.add(new Paragraph(
+                    "Generado el: " + LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"))));
             document.add(new Paragraph(" "));
 
             // Tabla
