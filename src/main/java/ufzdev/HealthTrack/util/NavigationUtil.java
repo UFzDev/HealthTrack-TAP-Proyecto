@@ -56,12 +56,12 @@ public class NavigationUtil {
             Parent root = loader.load();
 
             Stage modalStage = new Stage();
-            modalStage.initModality(Modality.APPLICATION_MODAL); // Bloquea la ventana de atrás
+            modalStage.initModality(Modality.APPLICATION_MODAL);
             modalStage.setTitle(title);
             modalStage.setScene(new Scene(root, width, height));
             modalStage.centerOnScreen();
 
-            modalStage.show();
+            modalStage.showAndWait();
 
         } catch (IOException e) {
             AlertsUtil.showError("Error de Sistema", "No se pudo abrir el formulario: " + fxmlFile);
@@ -84,7 +84,7 @@ public class NavigationUtil {
     }
 
     public static void goToAdminUserModal() {
-        showModal("admin/admin-user-modal.fxml", "Registrar Personal - HealthTrack", 550, 650);
+        showModal("admin/admin-user-modal.fxml", "Gestión de Personal - HealthTrack", 550, 650);
     }
 
-}
+}

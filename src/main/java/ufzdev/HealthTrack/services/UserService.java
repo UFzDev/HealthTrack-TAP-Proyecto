@@ -69,4 +69,29 @@ public class UserService {
         USER_DAO.create(uid, userModel);
     }
 
+    public static void updateUser(UserModel userModel) throws Exception {
+        if (userModel == null || userModel.getId() == null) {
+            throw new Exception("Usuario inválido para actualizar");
+        }
+
+        UserRecord.UpdateRequest request = new UserRecord.UpdateRequest(userModel.getId())
+                .setEmail(userModel.getEmail())
+                .setDisplayName(userModel.getName());
+        
+        if (userModel.getPassword() != null && !userModel.getPassword().isBlank()) {
+            request.setPassword(userModel.getPassword());
+        }
+
+        FirebaseAuth.getInstance().updateUser(request);
+        USER_DAO.update(userModel);
+    }
+
+    public static void deleteUser(String uid) throws Exception {
+        if (uid == null || uid.isBlank()) {
+            throw new Exception("UID inválido para eliminar");
+        }
+
+        FirebaseAuth.getInstance().deleteUser(uid);
+        USER_DAO.delete(uid);
+    }
 }

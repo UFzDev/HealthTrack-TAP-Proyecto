@@ -209,6 +209,14 @@ public class UserFirestoreDao implements UserDao {
         db.collection("usuarios").document(userModel.getId()).set(userData).get();
     }
 
+    @Override
+    public void delete(String uid) throws Exception {
+        if (uid == null || uid.isBlank()) {
+            return;
+        }
+        db.collection("usuarios").document(uid).delete().get();
+    }
+
     private UserRole parseRole(String roleString) {
         if (roleString == null || roleString.isBlank()) {
             return UserRole.PACIENTE;

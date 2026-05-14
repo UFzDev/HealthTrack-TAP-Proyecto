@@ -53,6 +53,8 @@
     </VBox>
 
     <HBox spacing="15" alignment="CENTER_RIGHT">
+        <Button fx:id="btnDelete" text="Eliminar Usuario" onAction="#handleDelete" styleClass="btn-danger" visible="false" managed="false" />
+        <Region HBox.hgrow="ALWAYS" />
         <Button text="Cancelar" onAction="#handleCancel" styleClass="btn-tertiary" />
         <Button fx:id="btnSave" text="Guardar Usuario" onAction="#handleSave" styleClass="btn-primary" />
     </HBox>

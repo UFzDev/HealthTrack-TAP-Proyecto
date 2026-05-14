@@ -34,11 +34,68 @@ public class AdminUserModalController implements Initializable {
     private ComboBox<UserRole> roleComboBox;
     @FXML
     private Button btnSave;
+    @FXML
+    private Button btnDelete;
+
+    private static UserModel userToEditStatic;
+    private UserModel userToEdit;
+
+    public static void setUserToEdit(UserModel user) {
+        userToEditStatic = user;
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         roleComboBox.setItems(FXCollections.observableArrayList(UserRole.values()));
-        roleComboBox.setValue(UserRole.MEDICO); // Por defecto sugiere Médico para Admin
+        roleComboBox.setValue(UserRole.MEDICO); 
+        
+        // Cargar usuario si se pasó estáticamente
+        if (userToEditStatic != null) {
+            setUser(userToEditStatic);
+            userToEditStatic = null; // Limpiar para la próxima vez
+        }
+    }
+
+    public void setUser(UserModel user) {
+        this.userToEdit = user;
+        if (user != null) {
+            nameField.setText(user.getName());
+            usernameField.setText(user.getUsername());
+            emailField.setText(user.getEmail());
+            roleComboBox.setValue(user.getRole());
+            passwordField.setText(user.getPassword()); 
+            
+            btnSave.setText("Actualizar Datos");
+            btnDelete.setVisible(true);
+            btnDelete.setManaged(true);
+        }
+    }
+
+    @FXML
+    private void handleDelete() {
+        if (userToEdit == null) return;
+
+        boolean confirm = AlertsUtil.showConfirmation("Eliminar Usuario", 
+            "¿Estás seguro de que deseas eliminar permanentemente a " + userToEdit.getName() + "? Esta acción no se puede deshacer.");
+        
+        if (confirm) {
+            btnDelete.setDisable(true);
+            TaskExecutorUtil.execute(
+                () -> {
+                    UserService.deleteUser(userToEdit.getId());
+                    return null;
+                },
+                res -> {
+                    AlertsUtil.showSuccess("Eliminado", "Usuario eliminado correctamente.");
+                    LogService.log("Eliminación de Usuario", "Se ha eliminado el usuario " + userToEdit.getUsername());
+                    closeModal();
+                },
+                err -> {
+                    AlertsUtil.showError("Error", "No se pudo eliminar: " + err.getMessage());
+                    btnDelete.setDisable(false);
+                }
+            );
+        }
     }
 
     @FXML
@@ -49,39 +106,38 @@ public class AdminUserModalController implements Initializable {
         String password = passwordField.getText();
         UserRole selectedRole = roleComboBox.getValue();
 
-        if (name.isBlank() || user.isBlank() || email.isBlank() || password.isBlank() || selectedRole == null) {
+        if (name.isBlank() || user.isBlank() || email.isBlank() || selectedRole == null) {
             AlertsUtil.showError("Campos incompletos", "Por favor completa todos los campos.");
             return;
         }
 
-        UserModel newUser = new UserModel();
-        newUser.setName(name);
-        newUser.setUsername(user);
-        newUser.setEmail(email);
-        newUser.setPassword(password);
-        newUser.setRole(selectedRole);
-
-        try {
-            UserValidator.validateForRegistration(newUser);
-        } catch (ValidationException ve) {
-            AlertsUtil.showError("Datos inválidos", ve.getMessage());
-            return;
-        }
+        UserModel userToSave = (userToEdit != null) ? userToEdit : new UserModel();
+        userToSave.setName(name);
+        userToSave.setUsername(user);
+        userToSave.setEmail(email);
+        userToSave.setPassword(password);
+        userToSave.setRole(selectedRole);
 
         btnSave.setDisable(true);
 
         TaskExecutorUtil.execute(
                 () -> {
-                    UserService.registerUser(newUser);
-                    return newUser;
+                    if (userToEdit == null) {
+                        UserValidator.validateForRegistration(userToSave);
+                        UserService.registerUser(userToSave);
+                    } else {
+                        UserService.updateUser(userToSave);
+                    }
+                    return userToSave;
                 },
                 res -> {
-                    AlertsUtil.showSuccess("Éxito", "Usuario " + selectedRole + " creado correctamente.");
-                    LogService.log("Creación de Usuario", "Se ha creado el usuario " + newUser.getUsername() + " con rol " + selectedRole);
+                    String action = (userToEdit == null) ? "creado" : "actualizado";
+                    AlertsUtil.showSuccess("Éxito", "Usuario " + action + " correctamente.");
+                    LogService.log("Gestión de Usuario", "Se ha " + action + " el usuario " + userToSave.getUsername());
                     closeModal();
                 },
                 err -> {
-                    AlertsUtil.showError("Error", "No se pudo crear el usuario: " + err.getMessage());
+                    AlertsUtil.showError("Error", "No se pudo procesar el usuario: " + err.getMessage());
                     btnSave.setDisable(false);
                 }
         );

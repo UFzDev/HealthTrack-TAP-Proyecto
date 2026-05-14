@@ -48,6 +48,24 @@ public class AdminUserManagementController implements Initializable {
         roleColumn.setCellValueFactory(data -> new ReadOnlyStringWrapper(
                 data.getValue().getRole() != null ? data.getValue().getRole().name() : "PACIENTE"
         ));
+
+        // Evento de doble clic para editar
+        usersTable.setRowFactory(tv -> {
+            javafx.scene.control.TableRow<UserModel> row = new javafx.scene.control.TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 2 && (!row.isEmpty())) {
+                    UserModel rowData = row.getItem();
+                    handleEditUser(rowData);
+                }
+            });
+            return row;
+        });
+    }
+
+    private void handleEditUser(UserModel user) {
+        AdminUserModalController.setUserToEdit(user);
+        NavigationUtil.goToAdminUserModal();
+        loadUsers(); // Recargar tabla tras cerrar modal
     }
 
     private void loadUsers() {
@@ -63,6 +81,7 @@ public class AdminUserManagementController implements Initializable {
 
     @FXML
     private void handleCreateUser(javafx.event.ActionEvent event) {
+        AdminUserModalController.setUserToEdit(null);
         NavigationUtil.goToAdminUserModal();
         loadUsers();
     }
