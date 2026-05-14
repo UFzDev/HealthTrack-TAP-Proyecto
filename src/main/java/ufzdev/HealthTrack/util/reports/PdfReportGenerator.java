@@ -33,32 +33,57 @@ public class PdfReportGenerator implements ReportGenerator {
                 PdfDocument pdf = new PdfDocument(writer);
                 Document document = new Document(pdf)) {
 
-            // Título
-            document.add(new Paragraph(title).setBold().setFontSize(18));
-            document.add(new Paragraph(
-                    "Generado el: " + LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"))));
-            document.add(new Paragraph(" "));
+            addHeader(document, title);
+            addTable(document, headers, rows);
+        }
+        return outputPath;
+    }
 
-            // Tabla
-            Table table = new Table(UnitValue.createPercentArray(headers.length));
-            table.useAllAvailableWidth();
+    @Override
+    public Path generateMultiSection(String mainTitle, List<ReportSection> sections, String fileName) throws Exception {
+        Files.createDirectories(outputDir);
+        Path outputPath = outputDir.resolve(fileName + ".pdf");
 
-            // Encabezados
-            for (String header : headers) {
-                table.addHeaderCell(new Cell().add(new Paragraph(header).setBold())
-                        .setBackgroundColor(ColorConstants.LIGHT_GRAY));
+        try (PdfWriter writer = new PdfWriter(outputPath.toFile());
+                PdfDocument pdf = new PdfDocument(writer);
+                Document document = new Document(pdf)) {
+
+            addHeader(document, mainTitle);
+            
+            for (ReportSection section : sections) {
+                document.add(new Paragraph(section.title).setBold().setFontSize(14).setMarginTop(20));
+                addTable(document, section.headers, section.rows);
             }
+        }
+        return outputPath;
+    }
 
-            // Datos
-            for (String[] row : rows) {
-                for (String cellData : row) {
-                    table.addCell(new Cell().add(new Paragraph(cellData != null ? cellData : "")));
-                }
-            }
+    private void addHeader(Document document, String title) {
+        document.add(new Paragraph(title).setBold().setFontSize(18));
+        document.add(new Paragraph(
+                "Generado el: " + LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"))));
+        document.add(new Paragraph(" "));
+    }
 
-            document.add(table);
+    private void addTable(Document document, String[] headers, List<String[]> rows) {
+        if (headers == null || headers.length == 0) return;
+        
+        Table table = new Table(UnitValue.createPercentArray(headers.length));
+        table.useAllAvailableWidth();
+
+        // Encabezados
+        for (String header : headers) {
+            table.addHeaderCell(new Cell().add(new Paragraph(header).setBold())
+                    .setBackgroundColor(ColorConstants.LIGHT_GRAY));
         }
 
-        return outputPath;
+        // Datos
+        for (String[] row : rows) {
+            for (String cellData : row) {
+                table.addCell(new Cell().add(new Paragraph(cellData != null ? cellData : "")));
+            }
+        }
+
+        document.add(table);
     }
 }

@@ -33,6 +33,11 @@ public interface HealthMetricDao {
     List<HealthMetricModel> getLatestByUserId(String userId, int limit) throws Exception;
 
     /**
+     * Obtiene todas las mediciones registradas en el sistema.
+     */
+    List<HealthMetricModel> listAll() throws Exception;
+
+    /**
      * Elimina una medición por ID.
      */
     void delete(String id) throws Exception;

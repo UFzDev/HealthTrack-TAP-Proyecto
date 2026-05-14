@@ -174,7 +174,8 @@ public class UserFirestoreDao implements UserDao {
         java.util.List<UserModel> result = new ArrayList<>();
         QuerySnapshot snapshot = db.collection("usuarios").get().get();
 
-        if (snapshot.isEmpty()) return result;
+        if (snapshot.isEmpty())
+            return result;
 
         for (QueryDocumentSnapshot doc : snapshot.getDocuments()) {
             UserModel user = new UserModel();
@@ -183,7 +184,8 @@ public class UserFirestoreDao implements UserDao {
             user.setUsername(firstNonBlank(doc.getString("usuario"), doc.getString("username")));
             user.setEmail(firstNonBlank(doc.getString("correo"), doc.getString("email")));
             user.setRole(parseRole(doc.getString("role")));
-            user.setDoctorAsignadoId(firstNonBlank(doc.getString("doctorAsignadoId"), doc.getString("doctorAssignedId")));
+            user.setDoctorAsignadoId(
+                    firstNonBlank(doc.getString("doctorAsignadoId"), doc.getString("doctorAssignedId")));
             result.add(user);
         }
 

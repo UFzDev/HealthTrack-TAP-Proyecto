@@ -61,4 +61,17 @@ public class SystemLogFirestoreDao implements SystemLogDao {
         }
         return logs;
     }
+
+    @Override
+    public List<SystemLogModel> listAll() throws Exception {
+        List<SystemLogModel> logs = new ArrayList<>();
+        QuerySnapshot snapshot = db.collection(COLLECTION)
+                .orderBy("timestamp", Query.Direction.DESCENDING)
+                .get().get();
+        
+        for (QueryDocumentSnapshot doc : snapshot) {
+            logs.add(doc.toObject(SystemLogModel.class));
+        }
+        return logs;
+    }
 }

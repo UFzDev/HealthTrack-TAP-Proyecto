@@ -40,3 +40,28 @@
 .maintenance-card {
     -fx-background-color: #f1f5f9;
 }
+
+/* Report Selection Styles */
+.checkbox-group-container {
+    -fx-padding: 10;
+    -fx-background-color: #ffffff;
+    -fx-border-color: #e2e8f0;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+}
+
+.admin-checkbox {
+    -fx-font-family: "Inter", sans-serif;
+    -fx-font-size: 14px;
+    -fx-text-fill: #1e293b;
+    -fx-cursor: hand;
+}
+
+.admin-checkbox:selected .box {
+    -fx-background-color: #3b82f6;
+}
+
+.admin-bullet {
+    -fx-text-fill: #3b82f6;
+    -fx-font-weight: bold;
+}

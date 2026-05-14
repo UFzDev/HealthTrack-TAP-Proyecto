@@ -14,4 +14,26 @@ public interface ReportGenerator {
      * @throws Exception Si ocurre un error en la generación.
      */
     Path generate(String title, String[] headers, List<String[]> rows, String fileName) throws Exception;
+
+    /**
+     * Genera un reporte con múltiples secciones (ideal para Backups o hojas múltiples en Excel).
+     */
+    default Path generateMultiSection(String mainTitle, List<ReportSection> sections, String fileName) throws Exception {
+        throw new UnsupportedOperationException("Multi-section not implemented for this generator");
+    }
+
+    /**
+     * Clase auxiliar para definir una sección del reporte.
+     */
+    class ReportSection {
+        public String title;
+        public String[] headers;
+        public List<String[]> rows;
+
+        public ReportSection(String title, String[] headers, List<String[] > rows) {
+            this.title = title;
+            this.headers = headers;
+            this.rows = rows;
+        }
+    }
 }

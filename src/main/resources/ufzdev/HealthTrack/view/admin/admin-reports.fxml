@@ -1,27 +1,95 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import org.controlsfx.control.SearchableComboBox?>
 
 <VBox xmlns:fx="http://javafx.com/fxml"
       fx:controller="ufzdev.HealthTrack.controllers.admin.AdminReportsController"
       stylesheets="@../../css/global.css, @../../css/main.css, @../../css/admin/admin.css"
-      spacing="25" styleClass="admin-management-container">
+      spacing="30" styleClass="admin-management-container">
 
-    <VBox spacing="8">
-        <Label text="Centro de Reportes" styleClass="form-title, admin-title" />
-        <Label text="Generación de informes clínicos, estadísticos y de auditoría del sistema." 
+    <padding>
+        <Insets top="30" right="40" bottom="30" left="40"/>
+    </padding>
+
+    <!-- Encabezado -->
+    <VBox spacing="10">
+        <Label text="Centro de Reportes y Auditoría" styleClass="form-title, admin-title" />
+        <Label text="Genera informes detallados del personal médico, pacientes y actividad del sistema." 
                styleClass="form-subtitle" />
+        <Separator styleClass="admin-separator" />
     </VBox>
 
-    <HBox spacing="20" alignment="CENTER_LEFT" styleClass="metric-card">
-        <VBox spacing="10" HBox.hgrow="ALWAYS">
-            <Label text="Próximamente" styleClass="stat-label" />
-            <Label text="Módulo de Reportes Avanzados" styleClass="topbar-welcome" />
-            <Label text="Aquí podrás exportar datos consolidados en formatos PDF, Excel y CSV." 
-                   styleClass="context-text" wrapText="true" />
+    <HBox spacing="30" alignment="TOP_CENTER">
+        <!-- Panel de Configuración -->
+        <VBox spacing="20" styleClass="metric-card" HBox.hgrow="ALWAYS" maxWidth="500">
+            <padding>
+                <Insets top="25" right="25" bottom="25" left="25"/>
+            </padding>
+            
+            <Label text="Configuración del Reporte" styleClass="section-title" />
+            
+            <VBox spacing="15">
+                <VBox spacing="10">
+                    <Label text="Entidades a Incluir" styleClass="field-label" />
+                    <VBox fx:id="checkContainer" spacing="8" styleClass="checkbox-group-container">
+                        <CheckBox fx:id="chkUsers" text="Usuarios (Todos)" styleClass="admin-checkbox" selected="true" />
+                        <CheckBox fx:id="chkDoctors" text="Médicos" styleClass="admin-checkbox" />
+                        <CheckBox fx:id="chkPatients" text="Pacientes" styleClass="admin-checkbox" />
+                        <CheckBox fx:id="chkLogs" text="Logs de Auditoría" styleClass="admin-checkbox" />
+                        <CheckBox fx:id="chkMetrics" text="Mediciones de Salud" styleClass="admin-checkbox" />
+                        <CheckBox fx:id="chkConfig" text="Configuración del Sistema" styleClass="admin-checkbox" />
+                    </VBox>
+                </VBox>
+                
+                <VBox spacing="5">
+                    <Label text="Formato de Archivo" styleClass="field-label" />
+                    <ComboBox fx:id="formatSelector" maxWidth="Infinity" styleClass="form-combo-box" />
+                </VBox>
+            </VBox>
+            
+            <VBox spacing="10" alignment="CENTER">
+                <Button fx:id="btnGenerate" text="Generar y Exportar Reporte" 
+                        onAction="#handleGenerateReport"
+                        styleClass="btn-primary, btn-large" maxWidth="Infinity" />
+                <Label fx:id="statusLabel" styleClass="context-text" />
+            </VBox>
+        </VBox>
+
+        <!-- Panel Informativo / Tips -->
+        <VBox spacing="20" styleClass="metric-card" maxWidth="400">
+            <padding>
+                <Insets top="25" right="25" bottom="25" left="25"/>
+            </padding>
+            
+            <Label text="Información Útil" styleClass="section-title" />
+            
+            <VBox spacing="12">
+                <HBox spacing="10">
+                    <Label text="●" styleClass="admin-bullet" />
+                    <Label text="Los reportes se guardan en tu carpeta de usuario: HealthTrack/Reports" 
+                           wrapText="true" styleClass="context-text" />
+                </HBox>
+                <HBox spacing="10">
+                    <Label text="●" styleClass="admin-bullet" />
+                    <Label text="Los reportes de Excel son ideales para análisis de datos masivos." 
+                           wrapText="true" styleClass="context-text" />
+                </HBox>
+                <HBox spacing="10">
+                    <Label text="●" styleClass="admin-bullet" />
+                    <Label text="Los reportes PDF están listos para impresión y auditoría oficial." 
+                           wrapText="true" styleClass="context-text" />
+                </HBox>
+            </VBox>
+            
+            <Region VBox.vgrow="ALWAYS" />
+            
+            <HBox alignment="CENTER" styleClass="info-box">
+                <Label text="Seguridad: Los reportes contienen datos sensibles. Manejar con precaución." 
+                       wrapText="true" alignment="CENTER" textAlignment="CENTER" styleClass="small-text-warning" />
+            </HBox>
         </VBox>
     </HBox>
 

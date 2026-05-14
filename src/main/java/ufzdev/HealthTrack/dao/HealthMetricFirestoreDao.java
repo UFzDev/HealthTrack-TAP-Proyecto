@@ -97,6 +97,16 @@ public class HealthMetricFirestoreDao implements HealthMetricDao {
     }
 
     @Override
+    public List<HealthMetricModel> listAll() throws Exception {
+        List<HealthMetricModel> result = new ArrayList<>();
+        QuerySnapshot snapshot = db.collection(COLLECTION).get().get();
+        for (DocumentSnapshot doc : snapshot.getDocuments()) {
+            result.add(doc.toObject(HealthMetricModel.class));
+        }
+        return result;
+    }
+
+    @Override
     public void delete(String id) throws Exception {
         db.collection(COLLECTION).document(id).delete().get();
     }
