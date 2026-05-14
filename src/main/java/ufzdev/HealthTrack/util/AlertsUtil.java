@@ -19,7 +19,7 @@ public class AlertsUtil {
                             .showConfirm();
                 }
             } catch (Exception e) {
-                // Silently ignore during shutdown
+                
             }
         });
     }
@@ -36,7 +36,7 @@ public class AlertsUtil {
                             .showError();
                 }
             } catch (Exception e) {
-                // Silently ignore during shutdown
+                
             }
         });
     }

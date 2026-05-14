@@ -190,6 +190,23 @@ public class UserFirestoreDao implements UserDao {
         return result;
     }
 
+    @Override
+    public void update(UserModel userModel) throws Exception {
+        if (userModel == null || userModel.getId() == null || userModel.getId().isBlank()) {
+            return;
+        }
+
+        Map<String, Object> userData = new HashMap<>();
+        userData.put("nombre", userModel.getName());
+        userData.put("usuario", userModel.getUsername());
+        userData.put("correo", userModel.getEmail());
+        userData.put("password", userModel.getPassword());
+        userData.put("role", userModel.getRole() != null ? userModel.getRole().name() : UserRole.PACIENTE.name());
+        userData.put("doctorAsignadoId", userModel.getDoctorAsignadoId());
+
+        db.collection("usuarios").document(userModel.getId()).set(userData).get();
+    }
+
     private UserRole parseRole(String roleString) {
         if (roleString == null || roleString.isBlank()) {
             return UserRole.PACIENTE;

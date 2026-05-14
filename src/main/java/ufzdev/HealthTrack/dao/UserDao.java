@@ -21,4 +21,5 @@ public interface UserDao {
 
     int countByRole(UserRole role) throws Exception;
     java.util.List<UserModel> listAll() throws Exception;
+    void update(UserModel userModel) throws Exception;
 }
